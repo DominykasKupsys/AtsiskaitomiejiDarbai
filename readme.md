@@ -1,4 +1,8 @@
 Informacija apie projektą.
 
 Darbų sąrašas:
-1. Masyvų ir objektų panaudojimas - VERTINIMUI
+1. Masyvų ir objektų panaudojimas
+2. Darbas su ciklais
+3. Funkcijų naudojimas
+4. Tekstų apdorojimas
+5. Kalendoriaus generavimo funkcija
