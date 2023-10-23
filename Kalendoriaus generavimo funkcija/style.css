@@ -1,0 +1,25 @@
+table{
+    border-collapse: collapse;
+}
+td {
+    border: 1px solid black;
+    text-align: center;
+    width: 20px;
+    padding: 8px;
+  }
+th{
+    border: 1px solid black;
+    text-align: center;
+    width: 20px;
+    padding: 8px;
+    background-color: aquamarine;
+}
+.prev-month{
+    color: rgba(0, 0, 0, 0.5)
+}
+.next-month{
+    color: rgba(0, 0, 0, 0.5)
+}
+.today{
+    background-color: pink;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <p id="kalendorius"></p>
+
+    <script>
+      function kalendorius(metai, menuo) {
+        const menesio_pavadinimas = menesioPavadinimas(menuo);
+        const pirma_diena = pirmaDiena(metai, menuo);
+        const menesio_dienos = dienuSkaicius(metai, menuo);
+        const siandien_diena = siandien(metai, menuo, new Date().getDate());
+
+        let calendar = "<table>";
+        calendar +=
+          "<tr>" +
+          "<th colspan='7'>" +
+          menesio_pavadinimas +
+          " " +
+          metai +
+          "</th>" +
+          "</tr>";
+        calendar += "<tr>" + savaitesDienos() + "</tr>";
+
+        let diena = 1;
+        let preito_menesio_dienos = dienuSkaicius(metai, menuo - 1);
+        let kito_menesio_dienos = 1;
+
+        for (let row = 0; row < 6; row++) {
+          calendar += "<tr>";
+          for (let col = 0; col < 7; col++) {
+            if (row === 0 && col < pirma_diena - 1) {
+              calendar +=
+                "<td class='prev-month'>" +
+                (preito_menesio_dienos - pirma_diena + col + 2) +
+                "</td>";
+            } else if (diena > menesio_dienos) {
+              calendar +=
+                "<td class='next-month'>" + kito_menesio_dienos + "</td>";
+              kito_menesio_dienos++;
+            } else {
+              const siandien = siandien_diena && diena === new Date().getDate();
+              calendar +=
+                "<td" +
+                (siandien ? " class='today'" : "") +
+                ">" +
+                diena +
+                "</td>";
+              diena++;
+            }
+          }
+          calendar += "</tr>";
+          if (diena > menesio_dienos && kito_menesio_dienos > 7) {
+            break;
+          }
+        }
+
+        calendar += "</table>";
+        return calendar;
+      }
+      document.getElementById("kalendorius").innerHTML = kalendorius(2023, 3);
+
+      function menesioPavadinimas(menuo) {
+        monthList = [
+          "Sausis",
+          "Vasaris",
+          "Kovas",
+          "Balandis",
+          "Gegužė",
+          "Birželis",
+          "Liepa",
+          "Rugpjūtis",
+          "Rugsėjis",
+          "Spalis",
+          "Lapkritis",
+          "Gruodis",
+        ];
+        return monthList[menuo - 1];
+      }
+
+      function savaitesDienos() {
+        weekDayList = ["Pr", "A", "T", "K", "Pe", "Š", "S"];
+        let savaitės_dienos = "";
+        for (let i in weekDayList) {
+          savaitės_dienos += "<th>" + weekDayList[i] + "</th>";
+        }
+        return savaitės_dienos;
+      }
+
+      function pirmaDiena(metai, menuo) {
+        const firstDay = new Date(metai, menuo - 1, 1).getDay();
+        return firstDay === 0 ? 7 : firstDay;
+      }
+
+      function dienuSkaicius(metai, menuo) {
+        const dienu_Skaicius = new Date(metai, menuo, 0).getDate();
+        return dienu_Skaicius;
+      }
+
+      function siandien(metai, menuo, diena) {
+        const today = new Date();
+        const ivestaData = new Date(metai, menuo - 1, diena);
+        return (
+          today.getDate() === ivestaData.getDate() &&
+          today.getMonth() === ivestaData.getMonth() &&
+          today.getFullYear() === ivestaData.getFullYear()
+        );
+      }
+    </script>
+  </body>
+</html>
