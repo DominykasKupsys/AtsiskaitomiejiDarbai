@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masyvai ir objektai</title>
+  </head>
+  <body>
+    <h1>Pirma užduotis</h1>
+
+    <div id="uzd1"></div>
+
+    <script>
+      const automobolis = ["BMW", "M5", 2014, "benzinas"]; //skaičius dedame be kabučių.//
+      let rezultatas = " ";
+      rezultatas = "Markė: " + automobolis[0] + "<br>";
+      rezultatas += "Modelis: " + automobolis[1] + "<br>";
+      rezultatas += "Metai: " + automobolis[2] + "<br>";
+      rezultatas += "Kuras: " + automobolis[3];
+
+      document.getElementById("uzd1").innerHTML = rezultatas;
+    </script>
+
+    <h1>Antra užduotis</h1>
+
+    <div id="uzd2"></div>
+    <script>
+      const zmogus = [
+        "Jonas",
+        "Landsbergis",
+        "landsbergislol@gmail.com",
+        "+37036042069",
+        "Krokodilų gatvė 69",
+        "LT-92330",
+        "Geras dainininkas",
+      ];
+      let rezultatas2 = " ";
+      rezultatas2 = "Vardas: " + zmogus[0] + "<br>";
+      rezultatas2 += "pavardė: " + zmogus[1] + "<br>";
+      rezultatas2 += "el. paštas: " + zmogus[2] + "<br>";
+      rezultatas2 += "telefonas: " + zmogus[3] + "<br>";
+      rezultatas2 += "adresas: " + zmogus[4] + "<br>";
+      rezultatas2 += "pašto kodas: " + zmogus[5] + "<br>";
+      rezultatas2 += "komentaras: " + zmogus[6] + "<br>";
+
+      document.getElementById("uzd2").innerHTML = rezultatas2;
+    </script>
+
+    <h1>Trečia užduotis</h1>
+
+    <div id="uzd3"></div>
+    <script>
+      let rezultatas3 = " ";
+
+      const individas = {
+        Vardas: "Petras",
+        pavardė: "Petraitis",
+        elPaštas: "Petraskietas@gmail.com",
+        telefonas: "",
+        adresas: "Vaivorykščių gatvė 420",
+        paštoKodas: "",
+        komentaras: "Draugiškas Žmogus",
+      };
+  
+      rezultatas3 = "Vardas: " + individas.Vardas + "<br>";
+      rezultatas3 += "pavardė: " + individas.pavardė + "<br>";
+      rezultatas3 += "el paštas: " + individas.elPaštas + "<br>";
+      if(!individas.telefonas) {
+          rezultatas3 += "informacijos nėra duota" + "<br>"
+      } else{
+        rezultatas3 += "telefonas: " + individas.telefonas + "<br>";
+      }
+      rezultatas3 += "adresas: " + individas.adresas + "<br>";
+      if (!individas.paštoKodas) {
+      rezultatas3 += "informacijos nėra duota" + "<br>"
+      } else{
+        "pašto kodas: " + individas.paštoKodas + "<br>";
+      }
+      rezultatas3 += "komentaras: " + individas.komentaras + "<br>";
+
+      document.getElementById("uzd3").innerHTML = rezultatas3;
+    </script>
+
+    <h1>Ketvirta užduotis</h1>
+
+    <div id="uzd4"></div>
+
+    <script>
+      let rezultatas4 = " ";
+      const prekė = {
+        Pavadinimas: "HyperX Cloud &#8545",
+        kaina: " ",
+        aprašymas: " ",
+        paveiksliukai: [
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXdw7wu22TuUF4_I3r4iRn8qpWfLyw6Fpkfg&usqp=CAU",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkov1UypXcOno5xV-Cdfhg7Xnb5SKIoioOrA&usqp=CAU",
+        ],
+        nuoroda:
+          "https://www.senukai.lt/p/zaidimu-ausines-hyperx-cloud-ii-juodos-raudonos/4xv4?cat=b1k&index=1",
+      };
+      if ((prekė.kaina == false)) {
+        prekė.kaina = "Nėra informacijos";
+      }
+      if ((prekė.aprašymas == false)) {
+        prekė.aprašymas = "Nėra informacijos";
+      }
+
+      rezultatas4 = "Pavadinimas: " + prekė.Pavadinimas + "<br>";
+      rezultatas4 += "kaina: " + prekė.kaina + "<br>";
+      rezultatas4 +=
+        "paveiksliukai: " +             //reikejo if padaryti kai yra 1,2,3 arba isvis nera nuotraukų duotą.//
+        "<img src=" +
+        prekė.paveiksliukai[0] +
+        "style=width:100px>" +
+        "<img src=" +
+        prekė["paveiksliukai"][1] +
+        "style=width:100px>" +
+        "<br>";
+      rezultatas4 += "aprašymas: " + prekė.aprašymas + "<br>";
+      rezultatas4 +=
+        "nuoroda: " +
+        "<a href=" +
+        prekė.nuoroda +
+        ">https://www.senukai.lt/p/zaidimu-ausines-hyperx-cloud-ii-juodos-raudonos/4xv4?cat=b1k&index=1</a>";
+
+      document.getElementById("uzd4").innerHTML = rezultatas4;
+    </script>
+
+    <h1>Penkta užduotis</h1>
+    <div id="uzd5"></div>
+    <script>
+      const prekės = [
+        {
+          pavadinimas: "ausinės",
+          kaina: "50&#8364",
+          paveiksliukas:
+            "<img src=" +
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXdw7wu22TuUF4_I3r4iRn8qpWfLyw6Fpkfg&usqp=CAU" +
+            "width=100px height=100px>",
+        },
+        {
+          pavadinimas: "keptuvė",
+          kaina: "20&#8364",
+          paveiksliukas:
+            "<img src=" +
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp7gM8YwOhjqHHwZteSKd3i7iZu3m9istrt7cdDS0nIQ8py6bnE3cuN9VoSHVn1NRfU1k&usqp=CAU" +
+            "width=100px height=100px>",
+        },
+        {
+          pavadinimas: "pelytė",
+          kaina: "40&#8364",
+          paveiksliukas:
+            "<img src=" +
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoLibikNt55i_m3Ct0udU7OjH2zx7yi9QR1A&usqp=CAU" +
+            "width=100px height=100px>",
+        },
+        {
+          pavadinimas: "klaviatūra",
+          kaina: "120&#8364",
+          paveiksliukas:
+            "<img src=" +
+            "https://media.wired.com/photos/61044c948eb98ab033ce464e/191:100/w_2580,c_limit/Gear-Logitech-G413-Keyboard.jpg" +
+            "width=100px height=100px>",
+        },
+        {
+          pavadinimas: "akiniai",
+          kaina: "50&#8364",
+          paveiksliukas:
+            "<img src=" +
+            "https://assets.glasses.com/is/image/Glasses/805289270102__002.png?impolicy=GL_parameters_transp_clone1440" +
+            "width=100px height=100px>",
+        }, 
+      ];
+      let text = "";                    
+      for (let i = 0; i < 5; i++) {                                          
+        text += "Pavadinimas: " + prekės[i]["pavadinimas"] + "<br>";
+        text += "Kaina: " + prekės[i]["kaina"] + "<br>";
+        text +=
+          "Paveiksliukas: " + prekės[i]["paveiksliukas"] + "<br>" + "<br>";
+      }
+      document.getElementById("uzd5").innerHTML = text;
+    </script>
+  </body>
+</html>
