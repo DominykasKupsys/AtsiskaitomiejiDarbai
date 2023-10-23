@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Užduotis 5</h1>
+    <p id="uzd5"></p>
+    <script>
+      let tekstas =
+        `Lorem ipsum dolor Alėja sit amet consectetur adipisicing elit. Magni 
+    consectetur officiis modi ipsum magnam dicta iste adresą nihil possimus, saepe molestias 
+    voluptatum ut beatae optio ratione vero. Unde voluptatem deserunt velit.` +
+        "<br>";
+
+      let regex = /\ba([^\u0000-\u007F]|\w)*(\b|\B)/gi;
+
+      let rezultatas =
+        tekstas +
+        "<br>" +
+        "Žodžiai, kurie praside a raide: " +
+        tekstas.match(regex);
+
+      document.getElementById("uzd5").innerHTML = rezultatas;
+    </script>
+
+    <h1>Užduotis 6</h1>
+    <p id="uzd6"></p>
+    <script>
+      let Žodžiai = `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, quidem? 
+    Sequi, Magnam meilė adipisci in et, voluptatibus delectus atque incidunt cupiditate excepturi 
+    miegutis soluta eaque iusto debitis possimus blanditiis! Inventore, veniam consequuntur miegas?`;
+
+      let IšskirtiŽodžiai = Žodžiai.replace(
+        /\bm([^\u0000-\u007F]|\w)*(\b|\B)/gi,
+        "<mark>$&</mark>"
+      );
+
+      document.getElementById("uzd6").innerHTML = IšskirtiŽodžiai;
+    </script>
+
+    <h1>Užduotis 7</h1>
+    <p id="uzd7"></p>
+    <script>
+      let Žodžiai2 = `Lorem ipsum dolor sit, amet consectetur adipisicing elit. tėvas eos, quidem? 
+    Sequi, Magnam, adipisci in tėvynė et, voluptatibus delectus atque incidunt cupiditate excepturi 
+    miegutis soluta eaque iusto tiesa debitis possimus blanditiis! Inventore, veniam consequuntur miegas?`;
+
+      let IšskirtiŽodžiai2 = Žodžiai2.replace(
+        /\bt([^\u0000-\u007F]|\w)*(\b|\B)/gi,
+        "<span>$&</span>"
+      );
+
+      document.getElementById("uzd7").innerHTML = IšskirtiŽodžiai2;
+    </script>
+  </body>
+</html>

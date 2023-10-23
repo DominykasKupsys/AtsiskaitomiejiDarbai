@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Užduotis 1</h1>
+    <div id="text1">
+      Lorem ipsum dolor, sit amet consectetur
+      <a href="https://www.w3schools.com/"></a> adipisicing elit. Voluptates,
+      quia suscipit
+      <a href="https://stackoverflow.com/">stackoverflow</a> laudantium optio
+      blanditiis rerum, facere enim minus animi
+      <a href="https://developer.mozilla.org/en-US/">developer.mozilla</a> rem
+      ut aperiam nemo itaque corrupti. Dolore facilis et error laborum. <br />
+    </div>
+    <script>
+      let tekstas = document.getElementById("text1").innerHTML;
+
+      let nuo = 0;
+      while (tekstas.indexOf("<a ", nuo) != -1) {
+        let pozicija = tekstas.indexOf("<a ", nuo);
+        let pozicija2 = tekstas.indexOf(' href="', pozicija) + ' href="'.length;
+        let pozicija3 = tekstas.indexOf('"', pozicija2);
+        let nuoroda = tekstas.slice(pozicija2, pozicija3) + "<br>";
+
+        nuo = pozicija3;
+        document.getElementById("text1").innerHTML +=
+          "<br>" + "Nuoroda:" + nuoroda;
+      }
+    </script>
+    <h1>Užduotis2</h1>
+    <div id="text2">
+      Lorem ipsum dolor, sit amet consectetur
+      <a href="https://www.w3schools.com/"></a> adipisicing elit. Voluptates,
+      quia suscipit
+      <a href="https://stackoverflow.com/">stackoverflow</a> laudantium optio
+      blanditiis rerum, facere enim minus animi
+      <a href="https://developer.mozilla.org/en-US/">developer.mozilla</a> rem
+      ut aperiam nemo itaque corrupti. Dolore facilis et error laborum. <br />
+    </div>
+    <script>
+      let tekstas2 = document.getElementById("text2").innerHTML;
+
+      let regex = /(https?:\/\/[^ "]*)/g;
+      let rezultatas = tekstas2.match(regex);
+
+      document.getElementById("text2").innerHTML += "nuorodos: " + rezultatas;
+    </script>
+
+    <h1>Užduotis 3</h1>
+    <div id="text3">
+      Lorem ipsum dolor, sit amet
+      <img
+        src="https://i1.sndcdn.com/artworks-NoYLmDjKQvRf1eve-coM8ew-t500x500.jpg"
+        width="50px"
+        height="50px"
+      />
+      consectetur adipisicing elit. Voluptates, quia suscipit
+      <img
+        src="https://i.kym-cdn.com/photos/images/original/002/652/124/1dd.jpg"
+        width="50px"
+        height="50px"
+      />
+      laudantium optio blanditiis rerum, facere enim minus animi rem ut aperiam
+      nemo itaque corrupti. Dolore facilis et error laborum.<img
+        src="https://previews.123rf.com/images/elnur/elnur1112/elnur111201164/11419541-businessman-committing-suicide-through-hanging.jpg"
+        width="50px"
+        height="50px"
+      />
+      <br />
+    </div>
+    <script>
+      let tekstas3 = document.getElementById("text3").innerHTML;
+
+      let iki = 0;
+      while (tekstas3.indexOf("<img ", iki) != -1) {
+        let lokacija = tekstas3.indexOf("<img ", iki);
+        let lokacija2 = tekstas3.indexOf(' src="', lokacija) + ' src="'.length;
+        let lokacija3 = tekstas3.indexOf('"', lokacija2);
+        let paveikslelis = tekstas3.slice(lokacija2, lokacija3) + "<br>";
+
+        iki = lokacija3;
+        document.getElementById("text3").innerHTML +=
+          "<br>" + "Nuoroda:" + paveikslelis;
+      }
+    </script>
+
+    <h1>Užduotis 4</h1>
+    <div id="text4">
+      Lorem ipsum dolor, sit amet
+      <img
+        src="https://i1.sndcdn.com/artworks-NoYLmDjKQvRf1eve-coM8ew-t500x500.jpg"
+        width="50px"
+        height="50px"
+      />
+      consectetur adipisicing elit. Voluptates, quia suscipit
+      <img
+        src="https://i.kym-cdn.com/photos/images/original/002/652/124/1dd.jpg"
+        width="50px"
+        height="50px"
+      />
+      laudantium optio blanditiis rerum, facere enim minus animi rem ut aperiam
+      nemo itaque corrupti. Dolore facilis et error laborum.<img
+        src="https://previews.123rf.com/images/elnur/elnur1112/elnur111201164/11419541-businessman-committing-suicide-through-hanging.jpg"
+        width="50px"
+        height="50px"
+      />
+      <br />
+    </div>
+    <script>
+      let tekstas4 = document.getElementById("text4").innerHTML;
+
+      let regex2 = /(https?:\/\/[^ "]*)/g;
+
+      let rezultatas2 = tekstas4.match(regex2);
+
+      document.getElementById("text4").innerHTML += "nuorodos: " + rezultatas2;
+    </script>
+  </body>
+</html>
