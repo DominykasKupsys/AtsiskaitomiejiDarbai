@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="func3"></p>
+    <script>
+      function nuolaida_skaičiavimas(pradinė_kaina, nuolaida) {
+        return pradinė_kaina * (1 - nuolaida / 100);
+      }
+
+      const prekės = [
+        {
+          Pavadinimas: "iPhone 12 Pro Max",
+          Paveiksliukas:
+            '<img src="' +
+            "IMG/apple-iphone-12-pro-max-2.jpg" +
+            '" style="max-width: 300px;">',
+          Kaina: 979.0,
+          Nuolaida: 0,
+        },
+        {
+          Pavadinimas: "Samsung Galaxy S20 Ultra",
+          Paveiksliukas:
+            '<img src="' + "IMG/S20.jpg" + '" style="max-width: 300px;">',
+          Kaina: 649.0,
+          Nuolaida: 15,
+        },
+      ];
+      function object_array(prekės) {
+        let info = "";
+        if (prekės[0]["Nuolaida"]) {
+          info =
+            "Kaina: " +
+            new Intl.NumberFormat("lt-LT", {
+              style: "currency",
+              currency: "EUR",
+            }).format(prekės[0]["Kaina"]) +
+            "<br>" +
+            "Kaina su nuolaida: " +
+            new Intl.NumberFormat("lt-LT", {
+              style: "currency",
+              currency: "EUR",
+            }).format(
+              nuolaida_skaičiavimas(prekės[0]["Kaina"], prekės[0]["Nuolaida"])
+            );
+        } else {
+          info =
+          "Kaina: " +
+            new Intl.NumberFormat("lt-LT", {
+              style: "currency",
+              currency: "EUR",
+            }).format(prekės[0]["Kaina"]);
+        }
+        let info2 = "";
+        if (prekės[1]["Nuolaida"]) {
+          info2 =
+            "Kaina: " +
+            new Intl.NumberFormat("lt-LT", {
+              style: "currency",
+              currency: "EUR",
+            }).format(prekės[1]["Kaina"]) +
+            "<br>" +
+            "Kaina su nuolaida: " +
+            new Intl.NumberFormat("lt-LT", {
+              style: "currency",
+              currency: "EUR",
+            }).format(
+              nuolaida_skaičiavimas(prekės[1]["Kaina"], prekės[1]["Nuolaida"])
+            );
+        } else {
+          info2 =
+          "Kaina: " +
+            new Intl.NumberFormat("lt-LT", {
+              style: "currency",
+              currency: "EUR",
+            }).format(prekės[1]["Kaina"]);
+        }
+        return (
+          "Pavadinimas: " +
+          prekės[0]["Pavadinimas"] +
+          "<br>" +
+          "Paveiksliukas: " +
+          "<br>" +
+          prekės[0]["Paveiksliukas"] +
+          "<br>" +
+          info + "<br>" +
+          "Pavadinimas: " +
+          prekės[1]["Pavadinimas"] +
+          "<br>" +
+          "Paveiksliukas: " +
+          "<br>" +
+          prekės[1]["Paveiksliukas"] +
+          "<br>" +
+          info2
+        );
+      }
+
+      document.getElementById("func3").innerHTML = object_array(prekės);
+    </script>
+  </body>
+</html>

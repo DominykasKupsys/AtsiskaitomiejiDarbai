@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>konvertavimas iš mylių į kilometrus</h1>
+    <p id="mylios"></p>
+
+    <script>
+      function konvertavimas_km(x) {
+        if (typeof x === "number") {
+          return x * 1.609344;
+        } else {
+          return "neduotas skaičius";
+        }
+      }
+      let skaičius = 10;
+      let skaičius2 = 1.9;
+      let skaičius3 = "penkių";
+      let rezultatas = konvertavimas_km(skaičius);
+      let rezultatas2 = konvertavimas_km(skaičius2);
+      let rezultatas3 = konvertavimas_km(skaičius3);
+
+
+      document.getElementById("mylios").innerHTML =
+        skaičius +
+        " mylių į km konvertavimas: " +
+        rezultatas.toFixed(3) + " km" +
+        "<br>" +
+        skaičius2 +
+        " mylių į km konvertavimas: " +
+        rezultatas2.toFixed(3) + " km" +
+        "<br>" +
+        skaičius3 +
+        " mylių į km konvertavimas: " +
+        rezultatas3;
+    </script>
+
+    <h1>konvertavimas iš kilometrų į mylias</h1>
+
+    <div id="kilometras"></div>
+
+    <script>
+      function konvertavimas_mylios(j) {
+        if (typeof j === "number") {
+          return j * 1.609344;
+        } else {
+          return "neduotas skaičius";
+        }
+      }
+      let numeris1 = 4.2;
+      let numeris2 = "keturi";
+      let išeiga = konvertavimas_mylios(numeris1);
+      let išeiga2 = konvertavimas_mylios(numeris2);
+
+      document.getElementById("kilometras").innerHTML =
+        numeris1 +
+        " kilometrai į mylias konvertavimas: " +
+        išeiga.toFixed(3) +
+        " my" +
+        "<br>" +
+        numeris2 +
+        " kilometrai į mylias konvertavimas: " +
+        išeiga2;
+    </script>
+
+    <h1>konvertavimas iš laiko ir greičio į kelią</h1>
+    <p id="kelias"></p>
+
+    <script>
+      function konvertavimas_kelią(x, y) {
+        if (typeof y === "number") {
+          return x * y;
+        } else if (typeof x === "number") {
+          return x * y;
+        } else {
+          return "neduotas skaičius";
+        }
+      }
+
+      let greitis = 5;
+      let laikas = 2;
+      let greitis2 = "dešimt km/h";
+      let laikas2 = "dvidešimt valandų";
+      let galutinis1 = konvertavimas_kelią(greitis, laikas);
+      let galutinis2 = konvertavimas_kelią(greitis2, laikas2);
+
+      document.getElementById("kelias").innerHTML =
+        "atstumas kai laikas yra " +
+        laikas +
+        "h" +
+        ", o gretis yra " +
+        greitis +
+        "km/h = " +
+        galutinis1 +
+        " km" +
+        "<br>" +
+        "atstumas kai laikas yra " +
+        laikas2 +
+        ", o gretis yra " +
+        greitis2 +
+        " = " +
+        galutinis2;
+    </script>
+
+    <h1>konvertavimas temperatūros iš kelvinų į celcijus</h1>
+    <p id="temperatūra"></p>
+
+    <script>
+      function konvertavimas_celcijai(i) {
+        if (typeof i === "number") {
+          return (i - 32) * (5 / 9);
+        } else {
+          return "neduotas skaičius";
+        }
+      }
+
+      let kelvinai = 250;
+      let kelvinai2 = "dešimt laipsnių kelvinais";
+      let atsakymas = konvertavimas_celcijai(kelvinai);
+      let atsakymas2 = konvertavimas_celcijai(kelvinai2);
+
+      document.getElementById("temperatūra").innerHTML =
+        kelvinai +
+        "°F konvertavimas į celcijus: " +
+        atsakymas.toFixed(1) +
+        "°C" +
+        "<br>" +
+        kelvinai2 +
+        " konvertavimas į celcijus: " +
+        atsakymas2;
+    </script>
+    <h1>Srovės stiprio ir įtampos konvertavimas į galią</h1>
+    <p id="galia"></p>
+
+    <script>
+      function konvertavimas_galia(stipris, įtampa) {
+        if (typeof stipris === "number") {
+          if (typeof įtampa === "number") {
+            return stipris * įtampa;
+          }
+        } else {
+          return "neduotas skaičius";
+        }
+      }
+
+      let stipris = 6;
+      let įtampa = 8;
+      let stipris2 = "šeši";
+      let įtampa2 = 8;
+      let praktika1 = konvertavimas_galia(stipris, įtampa);
+      let praktika2 = konvertavimas_galia(stipris2, įtampa2);
+
+      document.getElementById("galia").innerHTML =
+        stipris +
+        " V * " +
+        įtampa +
+        " A = " +
+        praktika1 +
+        " W <br>" +
+        stipris2 +
+        " V * " +
+        įtampa2 +
+        " A = " +
+        praktika2;
+    </script>
+    <h1>Varžos ir įtampos konvertavimas į stovės stiprį</h1>
+    <p id="srovės_stipris"></p>
+
+    <script>
+      function konvertavimas_stipris(įtampa, varža) {
+        if (typeof varža === "number") {
+          if (typeof įtampa === "number") {
+            return įtampa / varža;
+          }
+        } else {
+          return "neduotas skaičius";
+        }
+      }
+
+      let varža = 7;
+      let varža2 = "penki";
+      let įtampa3 = 21;
+      let įtampa4 = 90;
+      let paskutinis = konvertavimas_stipris(įtampa3, varža);
+      let paskutinis2 = konvertavimas_stipris(įtampa4, varža2);
+
+      document.getElementById("srovės_stipris").innerHTML =
+        įtampa3 +
+        " Ω / " +
+        varža +
+        " V = " +
+        paskutinis +
+        " A <br>" +
+        įtampa4 +
+        " Ω / " +
+        varža2 +
+        " V = " +
+        paskutinis2;
+    </script>
+  </body>
+</html>
