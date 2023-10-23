@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <p id="uzd8"></p>
+    <script>
+      const salys2 = {
+        lt: ["Lietuva", "Vilnius"],
+        lv: ["Latvija", "Ryga"],
+        ee: ["Estija", "Talinas"],
+        be: ["Belgija", "Briuselis"],
+        dk: ["Danija", "Kopenhaga"],
+        fr: ["Prancūzija", "Paryžius"],
+        de: ["Vokietija", "Berlynas"],
+        pt: ["Portugalija", "Lisabona"],
+        pl: ["Lenkija", "Varšuva"],
+        cz: ["Čekija", "Praha"],
+        gr: ["Graikija", "Atėnai"],
+        it: ["Italija", "Roma"],
+        at: ["Austrija", "Viena"],
+      };
+
+      let lentele =
+        "<table>" +
+        "<tr>" +
+        "<th>" +
+        "Kodas." +
+        "</th>" +
+        "<th>" +
+        "Šalis" +
+        "</th>" +
+        "<th>" +
+        "Sostinė" +
+        "</th>" +
+        "<tr>";
+      for (let v in salys2) {
+        let kodas = v;
+        let KODAS = kodas.toUpperCase();
+        let valstybė = salys2[kodas][0];
+        let Sostinė = salys2[kodas][1];
+        lentele +=
+          "<tr>" +
+          "<td>" +
+          KODAS +
+          "</td>" +
+          "<td>" +
+          valstybė +
+          "</td>" +
+          "<td>" +
+          Sostinė +
+          "</td>" +
+          "</tr>";
+      }
+      lentele += "</table>";
+
+      document.getElementById("uzd8").innerHTML = lentele;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <p id="uzd6"></p>
+    <script>
+      let columns = 8;
+      let rows = 8;
+      let šaškės = "<table>";
+      for (let i = 1; i <= columns; i++) {
+        šaškės += "<tr>";
+        for (let j = 1; j <= rows; j++) {
+          if ((i + j) % 2 == 0) {
+            šaškės += '<td class="balta"></td>';
+          } else {
+            šaškės += '<td class="juoda"></td>';
+          }
+        }
+        šaškės += "</tr>";
+      }
+      šaškės += "</table>";
+      document.getElementById("uzd6").innerHTML = šaškės;
+    </script>
+  </body>
+</html>

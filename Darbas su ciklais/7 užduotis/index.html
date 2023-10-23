@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Užduotis 7</h1>
+    <p id="uzd7"></p>
+
+    <script>
+      const salys = {
+        Lietuva: "Vilnius",
+        Latvija: "Ryga",
+        Estija: "Talinas",
+        Belgija: "Briuselis",
+        Danija: "Kopenhaga",
+        Prancūzija: "Paryžius",
+        Vokietija: "Berlynas",
+        Portugalija: "Lisabona",
+        Lenkija: "Varšuva",
+        Čekija: "Praha",
+        Graikija: "Atėnai",
+        Italija: "Roma",
+        Austrija: "Viena",
+      };
+      let lentele2 =
+        "<table>" +
+        "<tr>" +
+        "<th>" +
+        "Nr." +
+        "</th>" +
+        "<th>" +
+        "Šalis" +
+        "</th>" +
+        "<th>" +
+        "Sostinė" +
+        "</th>" +
+        "<tr>";
+      let nr = 1;
+      for (let s in salys) {
+        let salis = s;
+        let sostine = salys[salis];
+        lentele2 +=
+          "<tr>" +
+          "<td>" +
+          nr +
+          "<td>" +
+          salis +
+          "</td>" +
+          "<td>" +
+          sostine +
+          "</td>" +
+          "</tr>";
+        nr++;
+      }
+      lentele2 += "</table>";
+      //dar reikėjo išvesti paprasta sąrašą.//
+
+      document.getElementById("uzd7").innerHTML = lentele2;
+    </script>
+  </body>
+</html>

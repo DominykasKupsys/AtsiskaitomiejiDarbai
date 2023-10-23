@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Užduotis 1</h1>
+    <p id="uzd1"></p>
+
+    <script>
+      let mėnesiai = [
+        "Sausis",
+        "Vasaris",
+        "Kovas",
+        "Balandis",
+        "Gegužė",
+        "Birželis",
+        "Liepa",
+        "Rugpjūtis",
+        "Rugsėjis",
+        "Spalis",
+        "Lapkritis",
+        "Gruodis",
+      ];
+
+      let text = "";
+
+      for (let i = 0; i < mėnesiai.length; i++) {
+        text += "mėnesis: " + mėnesiai[i] + "<br>";
+      }
+
+      document.getElementById("uzd1").innerHTML = text;
+    </script>
+    <h1>Užduotis 2</h1>
+    <p id="uzd2"></p>
+
+    <script>
+      let isvedimas = "";
+      let number = 25;
+      let sum = 0;
+
+      for (let i = 1; i <= number; i++) {
+        sum += i;
+        isvedimas += i;
+        if (i != number) {
+          isvedimas = isvedimas + " + ";
+        }
+      }
+      isvedimas = isvedimas + " = " + sum;
+
+      document.getElementById("uzd2").innerHTML = "Gauta suma: " + isvedimas;
+    </script>
+    <h1>Užduotis 3</h1>
+    <p id="uzd3"></p>
+
+    <script>
+      let isvedimas2 = " ";
+      let number2 = 100;
+
+      for (let i = 5; i <= number2; i += 5) {
+        if (i < number2) isvedimas2 += i + ", ";
+        else isvedimas2 += i;
+      }
+
+      document.getElementById("uzd3").innerHTML =
+        "skaičiai, kurie dalijasi iš 5 nuo 1 iki 100 be liekanos: " +
+        isvedimas2;
+    </script>
+
+    <h1>Užduotis 4</h1>
+    <p id="uzd4"></p>
+    <script>
+      let numeris = 5;
+      let factorialas = 1;
+      let procesas = numeris + "! = ";
+
+      for (let i = numeris; i >= 1; i--) {
+        factorialas *= i;
+        procesas += i + (i > 1 ? "*" : " = ");
+      }
+      document.getElementById("uzd4").innerHTML = procesas + factorialas;
+    </script>
+
+    <h1>Užduotis 5</h1>
+    <p id="uzd5"></p>
+
+    <script>
+      let lentele = "<table>";
+      for (let i = 1; i <= 9; i++) {
+        if (i % 3 == 1) {
+          lentele += "<tr>";
+        }
+        lentele += "<td>";
+        for (let j = 1; j <= 10; j++) {
+          lentele += i + " * " + j + " = " + i * j + "<br>";
+        }
+        lentele += "</td>";
+        if (i % 3 == 0) {
+          lentele += "</tr>";
+        }
+      }
+      lentele += "</table>";
+      document.getElementById("uzd5").innerHTML = lentele;
+    </script>
+  </body>
+</html>
