@@ -6,3 +6,4 @@ Darbų sąrašas:
 3. Funkcijų naudojimas
 4. Tekstų apdorojimas
 5. Kalendoriaus generavimo funkcija
+6. Skaičiuotuvo valdymo programavimas
