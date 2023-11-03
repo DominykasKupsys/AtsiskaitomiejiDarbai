@@ -43,10 +43,16 @@ const skaiciavimas = document.querySelector(".calculator-operation");
 const rezultatas = document.querySelector(".calculator-operation-result")
 
 /**
- * Jei nėra įvesta jokių operatorių ar skaičių, skaičiuotuvas rodo 0
+ * čia laikomos visos reikšmės
+ * @type {String}
  */
 
 let funkcionavimas = ""
+
+/**
+ * Jei nėra įvesta jokių operatorių ar skaičių, skaičiuotuvas rodo 0
+ */
+
 rezultatas.innerHTML = 0;
 
 /**
@@ -58,24 +64,42 @@ for (let i = 0; i < mygtukai.length; i++) {
 
   mygtukas.addEventListener("click", () => {
   let operacija = mygtukas.dataset.operacija;
-    
+    /**
+     * kai paspaudžiame C mygtuka visos reikšmės yra ištrinamos ir rezultate yra rodomas 0
+     */
     if (operacija == "C") {
       funkcionavimas = "";
       skaiciavimas.innerHTML = "";
       rezultatas.innerHTML = "0";
+      /**
+       * ištrinama paskutinė įvesta reikšmė
+       */
     } else if (operacija == "Del") {
       funkcionavimas = funkcionavimas.slice(0, -1);
       skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas);
+      /**
+       * kai paspaudžiame lygu mygtuką reikšmės funkcionavimas yra suskaičiuojamos su eval funkcija
+       */
     } else if (operacija == "=") {
       let galutinis = eval(procentuSkaiciavimas(funkcionavimas));
       skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas) + "=";
       rezultatas.innerHTML =  `<div id="result-value">${galutinis}</div>`;
       funkcionavimas = ""
+      /**
+       * kai paspaudžiame procentų mygtuką atliekami procentų skaičiavimai
+       */
     } else if (operacija == "%") {
       funkcionavimas += operacija;
       skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas);
       skaiciavimas.innerHTML = funkcionavimas;
+      /**
+       * atliekamas pats skaičiavimo procesas
+       */
     } else {
+      /**
+       * padaroma, kad negalėtume rašyti daugybos ir dalybos ženklos pačiame priekyje ir
+       * uždedamas limitas, kiek skaičių galyme suskaičiuoti, kad jie neišeitų iš skaičiuotuvo ribų
+       */
       if (negaliButiDaugOperatoriu(operacija)) {
         if (funkcionavimas === "") {
           if (operacija !== "*" && operacija !== "/") {
@@ -96,8 +120,8 @@ for (let i = 0; i < mygtukai.length; i++) {
 
 /**
  * pakeičia operatorių išvaizda skaičiuotuvo ekrane
- * @param {*} funkcionavimas 
- * @returns 
+ * @param {string} funkcionavimas 
+ * @returns {Array} gražina array, kuriame operatoriai yra su pakeista išvaizda
  */
 
 function tinkamiOperatoriai(funkcionavimas) {
@@ -116,6 +140,12 @@ function tinkamiOperatoriai(funkcionavimas) {
   return funkcionavimas_array.join("");
 }
 
+/**
+ * padaro, kad nebūtų galima parašyti kelis operatorius iš eilės
+ * @param {string} operacija 
+ * @returns {boolean} jei prie operatoriaus bandome parašyti dar viena operatorių gražina false
+ * kitais atvėjais gražina true
+ */
 
 function negaliButiDaugOperatoriu (operacija) {
   let paskutinis_mygtukas = funkcionavimas.slice(-1);
@@ -131,6 +161,11 @@ function negaliButiDaugOperatoriu (operacija) {
   return true
 }
 
+/**
+ * pakeičia procentų ženklą į dalybą iš šimto
+ * @param {string} funkcionavimas 
+ * @returns {Array} gražina array, kuriame procentai yra pakeisti į dalybą iš šimto
+ */
 
 function procentuSkaiciavimas(funkcionavimas) {
   funkcionavimas = funkcionavimas.replace(/%/g, '/100');
