@@ -16,21 +16,22 @@
         {
           Pavadinimas: "iPhone 12 Pro Max",
           Paveiksliukas:
-            '<img src="' +
-            "IMG/apple-iphone-12-pro-max-2.jpg" +
-            '" style="max-width: 300px;">',
+            "https://media.bite.lt/@bite-lt/sites/default/files/products/2021-04/iphone_12_purple-3_1.png",
           Kaina: 979.0,
           Nuolaida: 0,
+          Kiekis: 0,
         },
         {
           Pavadinimas: "Samsung Galaxy S20 Ultra",
           Paveiksliukas:
-            '<img src="' + "IMG/S20.jpg" + '" style="max-width: 300px;">',
+            "https://imageio.forbes.com/specials-images/imageserve/5e6cf1bcaa5428000759db0e/The-Samsung-Galaxy-S20-Ultra-/960x0.jpg?format=jpg&width=960",
           Kaina: 649.0,
           Nuolaida: 15,
+          Kiekis: 5,
         },
       ];
       function object_array(prekės) {
+     
         let info = "";
         if (prekės[0]["Nuolaida"]) {
           info =
@@ -79,23 +80,40 @@
               currency: "EUR",
             }).format(prekės[1]["Kaina"]);
         }
+
+        let kiekis = "";
+        if (!prekės[0]["Kiekis"]) {
+           kiekis = "Prekės išparduotos"
+        } else {
+          kiekis = prekės[0]["Kiekis"]
+        }
+
+        let kiekis2 = "";
+        if(!prekės[1]["Kiekis"]) {
+          kiekis2 = "Prekės išparduotos"
+        } else {
+          kiekis2 = prekės[1]["Kiekis"]
+        }
+
         return (
           "Pavadinimas: " +
           prekės[0]["Pavadinimas"] +
           "<br>" +
           "Paveiksliukas: " +
           "<br>" +
-          prekės[0]["Paveiksliukas"] +
+          "<img src=\"" + prekės[0]["Paveiksliukas"] + "\" width=\"300\" height=\"200\">" +  
           "<br>" +
-          info + "<br>" +
+          info + "<br>" + "Kiekis: " + kiekis + "<br>" +
           "Pavadinimas: " +
           prekės[1]["Pavadinimas"] +
           "<br>" +
           "Paveiksliukas: " +
+          "<br>" + "<img src=\"" +
+          prekės[1]["Paveiksliukas"] + "\width=\"300\" height=\"200\">" + 
           "<br>" +
-          prekės[1]["Paveiksliukas"] +
-          "<br>" +
-          info2
+          info2 + "<br>" +
+          "Kiekis: " + kiekis2
+          
         );
       }
 

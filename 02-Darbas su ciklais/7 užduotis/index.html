@@ -6,8 +6,8 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Užduotis 7</h1>
-    <p id="uzd7"></p>
+    <h1>Sąrašas</h1>
+    <p id="uzd7_pirmas"></p>
 
     <script>
       const salys = {
@@ -25,6 +25,19 @@
         Italija: "Roma",
         Austrija: "Viena",
       };
+      let sarasas = ""
+      for (let s in salys) {
+        let salis = s;
+        let sostine = salys[salis];
+        sarasas += `${salis}: ${sostine}<br>`;
+        document.getElementById("uzd7_pirmas").innerHTML = sarasas
+      }
+      </script>
+      
+      <h1>Lentelė</h1>
+      <p id="uzd7_antras"></p>
+
+      <script>
       let lentele2 =
         "<table>" +
         "<tr>" +
@@ -56,9 +69,9 @@
         nr++;
       }
       lentele2 += "</table>";
-      //dar reikėjo išvesti paprasta sąrašą.//
 
-      document.getElementById("uzd7").innerHTML = lentele2;
+
+      document.getElementById("uzd7_antras").innerHTML = lentele2;
     </script>
   </body>
 </html>

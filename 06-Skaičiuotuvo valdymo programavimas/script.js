@@ -20,7 +20,8 @@ $toggler.addEventListener('click', function() {
     $toggler.querySelector('#dark').style.display = 'block';
   }
 })
-
+import { procentuSkaiciavimas } from "./modules/procentu_veikimas.mjs";
+import { tinkamiOperatoriai } from "./modules/tinkami_operatoriai.mjs";
 /**
  * suranda visus elementus su calculator-button klase
  * @type {Collection}
@@ -83,7 +84,12 @@ for (let i = 0; i < mygtukai.length; i++) {
     } else if (operacija == "=") {
       let galutinis = eval(procentuSkaiciavimas(funkcionavimas));
       skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas) + "=";
-      rezultatas.innerHTML =  `<div id="result-value">${galutinis}</div>`;
+
+      if (galutinis.toString().length > 10) {
+        rezultatas.innerHTML = `<div id="resultas-dydis">${galutinis}</div>`;
+      } else {
+        rezultatas.innerHTML = galutinis;
+      }
       funkcionavimas = ""
       /**
        * kai paspaudžiame procentų mygtuką atliekami procentų skaičiavimai
@@ -119,28 +125,6 @@ for (let i = 0; i < mygtukai.length; i++) {
 };
 
 /**
- * pakeičia operatorių išvaizda skaičiuotuvo ekrane
- * @param {string} funkcionavimas 
- * @returns {Array} gražina array, kuriame operatoriai yra su pakeista išvaizda
- */
-
-function tinkamiOperatoriai(funkcionavimas) {
-  let funkcionavimas_array = funkcionavimas.split("");
-  let funkcionavimas_array_ilgis = funkcionavimas_array.length
-
-  for(let i = 0; i < funkcionavimas_array.length; i++){
-    if (funkcionavimas_array[i] == "*"){
-      funkcionavimas_array[i] = `<span>x<span>`
-    } else if (funkcionavimas_array[i] == "/"){
-      funkcionavimas_array[i] = `<span">÷<span>`
-    } else if (funkcionavimas_array[i] == "."){
-      funkcionavimas_array[i] = `<span>,<span>`
-    }
-  }
-  return funkcionavimas_array.join("");
-}
-
-/**
  * padaro, kad nebūtų galima parašyti kelis operatorius iš eilės
  * @param {string} operacija 
  * @returns {boolean} jei prie operatoriaus bandome parašyti dar viena operatorių gražina false
@@ -148,74 +132,54 @@ function tinkamiOperatoriai(funkcionavimas) {
  */
 
 function negaliButiDaugOperatoriu (operacija) {
-  let paskutinis_mygtukas = funkcionavimas.slice(-1);
-  let operatoriai = ["+","-","/","*",",","%","."]
+    let paskutinis_mygtukas = funkcionavimas.slice(-1);
+    let operatoriai = ["+","-","/","*",",","%","."]
 
-  if (operatoriai.includes(operacija)){
-    if (operatoriai.includes(paskutinis_mygtukas)){
-      return false
-    } else {
-      return true
+    if (operatoriai.includes(operacija)){
+      if (operatoriai.includes(paskutinis_mygtukas)){
+        return false
+      } else {
+        return true
+      }
     }
+    return true
   }
-  return true
-}
-
-/**
- * pakeičia procentų ženklą į dalybą iš šimto
- * @param {string} funkcionavimas 
- * @returns {Array} gražina array, kuriame procentai yra pakeisti į dalybą iš šimto
- */
-
-function procentuSkaiciavimas(funkcionavimas) {
-  funkcionavimas = funkcionavimas.replace(/%/g, '/100');
-  let funkcionavimas_array = funkcionavimas.split(" ");
-  return funkcionavimas_array.join(" ");
-}
-
-/**
- * leidžia skaičiuotuvui naudoti klavetūros mygtukus
- */
-
 document.addEventListener('keydown', (event) => {
-   
-  if(event.key== "1" || event.key == "2" || event.key == "3" || event.key == "4"
-  || event.key == "5" || event.key == "6" || event.key == "7" || event.key == "8"
-  || event.key == "9" || event.key == "=" || event.key == "." || event.key == ","
-  || event.key == "-" || event.key == "/" || event.key == "*"  || event.key == "%"
-  || event.key == "0" || event.key == "Backspace"|| event.key == "Delete" || event.key == "+"){
-    operacija = event.key
-  } 
-
-  if (operacija == "Delete") {
-    funkcionavimas = "";
-    skaiciavimas.innerHTML = "";
-    rezultatas.innerHTML = "0";
-  } else if (operacija == "Backspace") {
-    funkcionavimas = funkcionavimas.slice(0, -1);
-    skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas);
-  } else if (operacija == "=") {
-    let galutinis = eval(procentuSkaiciavimas(funkcionavimas));
-    skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas) + "=";
-    rezultatas.innerHTML = galutinis
-    funkcionavimas = ""
-  } else if (operacija == "%") {
-    funkcionavimas += operacija;
-    skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas);
-    skaiciavimas.innerHTML = funkcionavimas;
-  } else {
-    if (negaliButiDaugOperatoriu(operacija)) {
-      if (funkcionavimas === "") {
-        if (operacija !== "*" && operacija !== "/") {
-          rezultatas.innerHTML = operacija;
+  const allowedKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "=", ".", ",", "-", "/", "*", "%", "Backspace", "Delete", "+"];
+  
+  if (allowedKeys.includes(event.key)) {
+    let operacija = event.key;
+    
+    if (operacija == "C") {
+      funkcionavimas = "";
+      skaiciavimas.innerHTML = "";
+      rezultatas.innerHTML = "0";
+    } else if (operacija == "Del") {
+      funkcionavimas = funkcionavimas.slice(0, -1);
+      skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas);
+    } else if (operacija == "=") {
+      let galutinis = eval(procentuSkaiciavimas(funkcionavimas));
+      skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas) + "=";
+      rezultatas.innerHTML =  `<div id="resultas-dydis">${galutinis}</div>`;
+      funkcionavimas = ""
+    } else if (operacija == "%") {
+      funkcionavimas += operacija;
+      skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas);
+      skaiciavimas.innerHTML = funkcionavimas;
+    } else {
+      if (negaliButiDaugOperatoriu(operacija)) {
+        if (funkcionavimas === "") {
+          if (operacija !== "*" && operacija !== "/") {
+            rezultatas.innerHTML = operacija;
+            funkcionavimas += operacija;
+            skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas);
+          }
+        } else if (funkcionavimas[funkcionavimas.length] !== "*" && funkcionavimas[funkcionavimas.length ] !== "/" 
+        && funkcionavimas.length < 20) {
           funkcionavimas += operacija;
           skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas);
         }
-      } else if (funkcionavimas[funkcionavimas.length] !== "*" && funkcionavimas[funkcionavimas.length ] !== "/") {
-        funkcionavimas += operacija;
-        skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas);
       }
     }
   }
-  
-});
+})

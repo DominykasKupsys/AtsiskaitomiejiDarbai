@@ -11,51 +11,49 @@
     <p id="func2"></p>
     <script>
       const prekė = {
-        Pavadinimas: "iPhone 12 Pro Max",
-        Kaina: 979.0,
-        Paveiksliukas: "IMG/apple-iphone-12-pro-max-2.jpg",
-        Kiekis: 0,
-        Aprašymas: "Išmanusis telefonas",
-        Nuolaida: 5,
+        pavadinimas: "iPhone 12 Pro Max",
+        kaina: 979.0,
+        paveiksliukas: "IMG/apple-iphone-12-pro-max-2.jpg",
+        kiekis: 0,
+        aprašymas: "Išmanusis telefonas",
+        nuolaida: 15,
       };
 
       function prekė1(prekė) {
         let procentai = "";
-        if (prekė.Nuolaida){
-          procentai =  "Nuolaida: " + prekė.Nuolaida + "%";
+        if (!prekė.kiekis) {
+        prekė.kiekis = "Prekė išparduota";
+        }
+        if (prekė.nuolaida){
+          procentai =  "Nuolaida: " + prekė.nuolaida + "%";
         } else {
           procentai =  "Nuolaida: " + "Nuolaidos nėra";
         }
         return (
           "Pavadinimas: " +
-          prekė.Pavadinimas +
+          prekė.pavadinimas +
           " <br> " +
           "Kaina: " +
           new Intl.NumberFormat("lt-LT", {
             style: "currency",
             currency: "EUR",
-          }).format(prekė.Kaina) +
+          }).format(prekė.kaina) +
           "<br> " +
           "Paveiksliukas: " +
           "<br>" +
           '<img src="' +
-          prekė.Paveiksliukas +
+          prekė.paveiksliukas +
           '" style="max-width: 300px;">' +
           "<br>" +
           "Likutis: " +
-          prekė.Kiekis +
+          prekė.kiekis +
           "<br>" +
           "Aprašymas: " +
-          prekė.Aprašymas +
+          prekė.aprašymas +
           "<br>" +
           procentai
         );
-      }
-
-      if (!prekė.Kiekis) {
-        prekė.Kiekis = "Prekė išparduota";
-      }
-
+    }
       document.getElementById("func1").innerHTML = prekė1(prekė);
 
       function nuolaida_skaičiavimas(pradinė_kaina, nuolaida) {
@@ -64,41 +62,41 @@
 
       function prekė2(prekė) {
         let info = "";
-        if (prekė.Nuolaida) {
+        if (prekė.nuolaida) {
           info =
             "Kaina: " +
             new Intl.NumberFormat("lt-LT", {
               style: "currency",
               currency: "EUR",
-            }).format(prekė.Kaina) +
+            }).format(prekė.kaina) +
             "<br>" +
             "Kaina su nuolaida:  " +
             new Intl.NumberFormat("lt-LT", {
               style: "currency",
               currency: "EUR",
-            }).format(nuolaida_skaičiavimas(prekė.Kaina, prekė.Nuolaida));
+            }).format(nuolaida_skaičiavimas(prekė.kaina, prekė.nuolaida));
         } else {
           info =
             "Kaina: " +
             new Intl.NumberFormat("lt-LT", {
               style: "currency",
               currency: "EUR",
-            }).format(prekė.Kaina);
+            }).format(prekė.kaina);
         }
 
         return (
           "Pavadinimas: " +
-          prekė.Pavadinimas +
+          prekė.pavadinimas +
           " <br> " +
           "Paveiksliukas: " +
           "<br>" +
           '<img src="' +
-          prekė.Paveiksliukas +
+          prekė.paveiksliukas +
           '" style="max-width: 300px;">' +
           "<br>"
           + info
         );
-      }
+    }
 
       document.getElementById("func2").innerHTML = prekė2(prekė);
     </script>

@@ -29,7 +29,7 @@
         "Jonas",
         "Landsbergis",
         "landsbergislol@gmail.com",
-        "+37036042069",
+        +37036042069,
         "Krokodilų gatvė 69",
         "LT-92330",
         "Geras dainininkas",
@@ -61,19 +61,19 @@
         paštoKodas: "",
         komentaras: "Draugiškas Žmogus",
       };
-  
+
       rezultatas3 = "Vardas: " + individas.Vardas + "<br>";
       rezultatas3 += "pavardė: " + individas.pavardė + "<br>";
       rezultatas3 += "el paštas: " + individas.elPaštas + "<br>";
-      if(!individas.telefonas) {
-          rezultatas3 += "informacijos nėra duota" + "<br>"
-      } else{
+      if (!individas.telefonas) {
+        rezultatas3 += "informacijos nėra duota" + "<br>";
+      } else {
         rezultatas3 += "telefonas: " + individas.telefonas + "<br>";
       }
       rezultatas3 += "adresas: " + individas.adresas + "<br>";
       if (!individas.paštoKodas) {
-      rezultatas3 += "informacijos nėra duota" + "<br>"
-      } else{
+        rezultatas3 += "informacijos nėra duota" + "<br>";
+      } else {
         "pašto kodas: " + individas.paštoKodas + "<br>";
       }
       rezultatas3 += "komentaras: " + individas.komentaras + "<br>";
@@ -92,36 +92,41 @@
         kaina: " ",
         aprašymas: " ",
         paveiksliukai: [
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXdw7wu22TuUF4_I3r4iRn8qpWfLyw6Fpkfg&usqp=CAU",
+          //"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXdw7wu22TuUF4_I3r4iRn8qpWfLyw6Fpkfg&usqp=CAU",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkov1UypXcOno5xV-Cdfhg7Xnb5SKIoioOrA&usqp=CAU",
         ],
         nuoroda:
           "https://www.senukai.lt/p/zaidimu-ausines-hyperx-cloud-ii-juodos-raudonos/4xv4?cat=b1k&index=1",
       };
-      if ((prekė.kaina == false)) {
+
+      if (prekė.kaina == false) {
         prekė.kaina = "Nėra informacijos";
       }
-      if ((prekė.aprašymas == false)) {
+
+      if (prekė.aprašymas == false) {
         prekė.aprašymas = "Nėra informacijos";
       }
+      
+      if(!prekė.paveiksliukai) {
+        rezultatas4 = "paveiksliukai: " + "Nėra informacijos" + "<br>"
+      } else if 
+        (!prekė.paveiksliukai[0]){
+          rezultatas4 = "paveiksliukai: " + '<img src="' + prekė.paveiksliukai[1] +
+           '" width="300" height="200">' + "<br>" 
+        } else if (!prekė.paveiksliukai[1]){
+          rezultatas4 = "paveiksliukai: " + '<img src="' + prekė.paveiksliukai[0] +
+           '" width="300" height="200">' +"<br>" 
+        } else if (prekė.paveiksliukai) { 
+        rezultatas4 +="Paveiksliukas: " +'<img src="' +prekė.paveiksliukai[0] +
+        '" width="300" height="200">' +"<br>" + "Paveiksliukas: " + '<img src="' + 
+        prekė.paveiksliukai[1] +'" width="300" height="200">' +"<br>";
+        }
 
-      rezultatas4 = "Pavadinimas: " + prekė.Pavadinimas + "<br>";
+      rezultatas4 += "Pavadinimas: " + prekė.Pavadinimas + "<br>";
       rezultatas4 += "kaina: " + prekė.kaina + "<br>";
-      rezultatas4 +=
-        "paveiksliukai: " +             //reikejo if padaryti kai yra 1,2,3 arba isvis nera nuotraukų duotą.//
-        "<img src=" +
-        prekė.paveiksliukai[0] +
-        "style=width:100px>" +
-        "<img src=" +
-        prekė["paveiksliukai"][1] +
-        "style=width:100px>" +
-        "<br>";
       rezultatas4 += "aprašymas: " + prekė.aprašymas + "<br>";
       rezultatas4 +=
-        "nuoroda: " +
-        "<a href=" +
-        prekė.nuoroda +
-        ">https://www.senukai.lt/p/zaidimu-ausines-hyperx-cloud-ii-juodos-raudonos/4xv4?cat=b1k&index=1</a>";
+        "nuoroda: " + '<a href="' + prekė.nuoroda + '">Ausinės</a>';
 
       document.getElementById("uzd4").innerHTML = rezultatas4;
     </script>
@@ -132,51 +137,45 @@
       const prekės = [
         {
           pavadinimas: "ausinės",
-          kaina: "50&#8364",
+          kaina: 50,
           paveiksliukas:
-            "<img src=" +
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXdw7wu22TuUF4_I3r4iRn8qpWfLyw6Fpkfg&usqp=CAU" +
-            "width=100px height=100px>",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXdw7wu22TuUF4_I3r4iRn8qpWfLyw6Fpkfg&usqp=CAU",
         },
         {
           pavadinimas: "keptuvė",
-          kaina: "20&#8364",
+          kaina: 20,
           paveiksliukas:
-            "<img src=" +
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp7gM8YwOhjqHHwZteSKd3i7iZu3m9istrt7cdDS0nIQ8py6bnE3cuN9VoSHVn1NRfU1k&usqp=CAU" +
-            "width=100px height=100px>",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp7gM8YwOhjqHHwZteSKd3i7iZu3m9istrt7cdDS0nIQ8py6bnE3cuN9VoSHVn1NRfU1k&usqp=CAU",
         },
         {
           pavadinimas: "pelytė",
-          kaina: "40&#8364",
+          kaina: 40,
           paveiksliukas:
-            "<img src=" +
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoLibikNt55i_m3Ct0udU7OjH2zx7yi9QR1A&usqp=CAU" +
-            "width=100px height=100px>",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoLibikNt55i_m3Ct0udU7OjH2zx7yi9QR1A&usqp=CAU",
         },
         {
           pavadinimas: "klaviatūra",
-          kaina: "120&#8364",
+          kaina: 120,
           paveiksliukas:
-            "<img src=" +
-            "https://media.wired.com/photos/61044c948eb98ab033ce464e/191:100/w_2580,c_limit/Gear-Logitech-G413-Keyboard.jpg" +
-            "width=100px height=100px>",
+            "https://media.wired.com/photos/61044c948eb98ab033ce464e/191:100/w_2580,c_limit/Gear-Logitech-G413-Keyboard.jpg",
         },
         {
           pavadinimas: "akiniai",
-          kaina: "50&#8364",
+          kaina: 50,
           paveiksliukas:
-            "<img src=" +
-            "https://assets.glasses.com/is/image/Glasses/805289270102__002.png?impolicy=GL_parameters_transp_clone1440" +
-            "width=100px height=100px>",
-        }, 
+            "https://assets.glasses.com/is/image/Glasses/805289270102__002.png?impolicy=GL_parameters_transp_clone1440",
+        },
       ];
-      let text = "";                    
-      for (let i = 0; i < 5; i++) {                                          
+      let text = "";
+      for (let i = 0; i < 5; i++) {
         text += "Pavadinimas: " + prekės[i]["pavadinimas"] + "<br>";
-        text += "Kaina: " + prekės[i]["kaina"] + "<br>";
+        text += "Kaina: " + prekės[i]["kaina"] + "&#8364" + "<br>";
         text +=
-          "Paveiksliukas: " + prekės[i]["paveiksliukas"] + "<br>" + "<br>";
+          "Paveiksliukas: " +
+          '<img src="' +
+          prekės[i]["paveiksliukas"] +
+          '" width="100" height="50">' +
+          "<br>";
       }
       document.getElementById("uzd5").innerHTML = text;
     </script>

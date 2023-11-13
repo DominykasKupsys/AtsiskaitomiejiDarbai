@@ -220,6 +220,6 @@ body {
 #bg-9 {
   filter: blur(20px);
 }
-#result-value {
-  word-break: break-all;
+#resultas-dydis {
+  font-size:large;
 }
