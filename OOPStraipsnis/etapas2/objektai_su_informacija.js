@@ -1,25 +1,5 @@
-class Straipsnis {
-    constructor(pavadinimas, antraste, paveiksliukas, tekstas) {
-      this.pavadinimas = pavadinimas;
-      this.antraste = antraste;
-      this.paveiksliukas = paveiksliukas;
-      this.tekstas = tekstas;
-    }
-  
-    generavimas() {
-      return (
-        `<h1>${this.pavadinimas}</h1>` +
-        "<br>" +
-        `<h2>${this.antraste}</h2>` +
-        "<br>" +
-        '<img src="' +
-        this.paveiksliukas +
-        '" width="300" height="300">' +
-        "<br>" +
-        `<p>${this.tekstas}</p>`
-      );
-    }
-  }
+
+import  Straipsnis  from "../etapas1/Straipsnis.js"
 
 const straipsnis1 = new Straipsnis(
 "Straipsnis 1",
