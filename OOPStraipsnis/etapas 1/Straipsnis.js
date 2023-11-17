@@ -1,17 +1,31 @@
-
 class Straipsnis {
-    constructor(pavadinimas, antraštė, paveiksliukas, tekstas){
-        this.pavadinimas = pavadinimas
-        this.antraštė = antraštė
-        this.paveiksliukas = paveiksliukas
-        this.tekstas = tekstas
-        }
+  constructor(pavadinimas, antraštė, paveiksliukas, tekstas) {
+    this.pavadinimas = pavadinimas;
+    this.antraštė = antraštė;
+    this.paveiksliukas = paveiksliukas;
+    this.tekstas = tekstas;
+  }
 
-        generavimas() {
-            return this.pavadinimas + "<br>" + this.antraštė + "<br>" + '<img src="' + this.paveiksliukas +
-            '" width="200" height="200">' + "<br>" + this.tekstas
-        }
-    }
-//const straipsnis = new Straipsnis('pavadinimas','antraštė','https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/The_Indianapolis_Star%2C_2011.jpg/1200px-The_Indianapolis_Star%2C_2011.jpg','tekstas')
-//document.getElementById("Straipsnis").innerHTML = straipsnis.generavimas()
-            
+  generavimas() {
+    return (
+      `<h1>${this.pavadinimas}</h1>` +
+      "<br>" +
+      `<h2>${this.antraštė}</h2>` +
+      "<br>" +
+      '<img src="' +
+      this.paveiksliukas +
+      '" width="200" height="200">' +
+      "<br>" +
+      `<p>${this.tekstas}</p>`
+    );
+  }
+}
+
+/*const straipsnis = new Straipsnis(
+  "pavadinimas",
+  "antraštė",
+  "https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm00NTItcDItMDA1XzEucG5n.png",
+  "tekstas"
+);
+document.getElementById("Straipsnis").innerHTML = straipsnis.generavimas();
+*/
