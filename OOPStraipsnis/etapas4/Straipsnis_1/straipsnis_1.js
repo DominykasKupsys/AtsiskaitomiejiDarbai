@@ -17,3 +17,16 @@ const straipsnis = new Straipsnis(
     );
 
 document.getElementById("Straipsnis").innerHTML = straipsnis.generavimas() 
+
+const h1Elements = document.getElementsByTagName("h1");
+for (let i = 0; i < h1Elements.length; i++) {
+  h1Elements[i].style.textAlign = "center";
+}
+const h2Elements = document.getElementsByTagName("h2");
+for (let i = 0; i < h2Elements.length; i++) {
+  h2Elements[i].style.textAlign = "center";
+}
+const divElements = document.getElementsByTagName("div");
+for (let i = 0; i < divElements.length; i++) {
+  divElements[i].style.textAlign = "center";
+}

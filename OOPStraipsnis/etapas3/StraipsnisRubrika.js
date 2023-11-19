@@ -38,7 +38,7 @@ class StraipsnisRubrika extends Straipsnis {
       `<h1>${this.rubrikos_pavadinimas}</h1>`  +
       "<br>" +
       `<h2>${this.antraste}</h2>` +
-      `<img src="${this.paveiksliukas}" width="50" height="50"></img>`+
+      `<div> <img src="${this.paveiksliukas}" width="50" height="50" style="text-align: center;" ></img> </div>`+
       "<br>" + `<a href="${this.nuoroda}">Skaityti plačiau</a>`
       )
     }
@@ -46,15 +46,5 @@ class StraipsnisRubrika extends Straipsnis {
 
   export default StraipsnisRubrika;
 
-/*const Rubrika = new StraipsnisRubrika(
-"Straipsnis 1",
-"bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla",
-"https://www.newsinlevels.com/wp-content/uploads/2023/11/Depositphotos_649420092_L.jpg",
-"bla bla",
-"Rubrika",
-"https://www.w3schools.com/",
-)
-
-document.getElementById("Straipsnis").innerHTML = Rubrika.generavimas() + Rubrika.generavimas_rubrikos()*/
 
 

@@ -12,9 +12,9 @@ class Straipsnis {
       "<br>" +
       `<h2>${this.antraste}</h2>` +
       "<br>" +
-      '<img src="' +
+      '<div><img src="' +
       this.paveiksliukas +
-      '" width="200" height="200">' +
+      '" width="200" height="200"></div>' +
       "<br>" +
       `<p>${this.tekstas}</p>`
     );

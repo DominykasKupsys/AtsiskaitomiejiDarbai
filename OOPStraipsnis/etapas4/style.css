@@ -1,0 +1,44 @@
+body{
+    background-image: url(https://images2.alphacoders.com/133/1339604.png);
+    background-size: cover;
+    color: white;
+}
+a{
+    color: white;
+}
+.Straipsniai{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 35px;
+}
+#Straipsnis1{
+    grid-column: span 3;
+    padding-bottom: 35px;
+    background-color: rgb(28, 41, 81,0.3);
+    border: 5px solid #0e1538;
+}
+#Straipsnis2{
+    grid-column: span 3;
+    padding-bottom: 35px;
+    background-color: rgb(28, 41, 81,0.3);
+    border: 5px solid #0e1538;
+}
+#Straipsnis3{
+    grid-column: span 2;
+    border: 5px solid #0e1538;
+    padding-bottom: 35px;
+    background-color: rgb(28, 41, 81,0.3);
+}
+
+#Straipsnis4{
+    grid-column: span 2;
+    border: 5px solid #0e1538;
+    padding-bottom: 35px;
+    background-color: rgb(28, 41, 81,0.3);
+}
+#Straipsnis5{
+    grid-column: span 2;
+    border: 5px solid #0e1538;
+    padding-bottom: 35px;
+    background-color: rgb(28, 41, 81,0.3);
+}
