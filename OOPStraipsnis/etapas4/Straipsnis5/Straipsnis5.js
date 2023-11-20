@@ -1,6 +1,6 @@
-import  Straipsnis  from "./../../etapas1/Straipsnis.js"
+import StraipsnisRubrika from "../../etapas3/StraipsnisRubrika.js"
 
-const straipsnis5 = new Straipsnis(
+const Rubrika5 = new StraipsnisRubrika(
     "Straipsnis 5",
     "France and Italy fight about migrants",
     "https://www.newsinlevels.com/wp-content/uploads/2022/11/Depositphotos_71106651_L-300x150.jpg?ezimgfmt=ngcb3/notWebP",
@@ -12,21 +12,10 @@ const straipsnis5 = new Straipsnis(
     Giorgia Meloni is Italy's new prime minister. She is the leader of the government. 
     Her ideas are extreme. Her government only supports Italy.
     The change makes the relationship worse between Italy and France. 
-    Now, France won't take 3,500 asylum seekers from Italy.`
+    Now, France won't take 3,500 asylum seekers from Italy.`,
+    "Rubrika 5",
+    "../etapas4/Straipsnis_5/index.html"
     )
 
-    document.getElementById("Straipsnis").innerHTML = straipsnis5.generavimas()
+document.getElementById("Straipsnis").innerHTML = Rubrika5.generavimas()
 
-    
-    const h1Elements = document.getElementsByTagName("h1");
-    for (let i = 0; i < h1Elements.length; i++) {
-    h1Elements[i].style.textAlign = "center";
-    }
-    const h2Elements = document.getElementsByTagName("h2");
-    for (let i = 0; i < h2Elements.length; i++) {
-    h2Elements[i].style.textAlign = "center";
-    }
-    const divElements = document.getElementsByTagName("div");
-    for (let i = 0; i < divElements.length; i++) {
-    divElements[i].style.textAlign = "center";
-    }

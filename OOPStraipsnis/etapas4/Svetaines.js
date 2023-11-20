@@ -15,7 +15,7 @@ Moritz believes that our world is always changing. It is something what people c
 It seems that in the future, countries will trade more with their neighbors. 
 This is a good and normal thing.`,
 "Rubrika 1",
-"../etapas4/Straipsnis_1/index.html"
+"../etapas4/Straipsnis1/index.html"
 
 )
 const Rubrika2 = new StraipsnisRubrika(
@@ -31,7 +31,7 @@ Animal groups say that using animals in circuses is not safe.
 Also, animals are not happy there. In Italy, it is still possible to use animals in circuses.
 Many people want this to stop.`,
 "Rubrika 2",
-"../etapas4/Straipsnis_2/index.html"
+"../etapas4/Straipsnis2/index.html"
 )
 const Rubrika3 = new StraipsnisRubrika(
 "Straipsnis 3",
@@ -46,7 +46,7 @@ Similar things happen in 2021. We do not know what will happen to the island.
 It may get bigger or go away. It sometimes happens that such islands go away. 
 Wind and water help this process. Japan gains and loses islands sometimes.`,
 "Rubrika 3",
-"../etapas4/Straipsnis_3/index.html"  
+"../etapas4/Straipsnis3/index.html"  
 )
 const Rubrika4 = new StraipsnisRubrika(
 "Straipsnis 4",
@@ -61,7 +61,7 @@ The special toilet is called America. It is still missing, and nobody knows wher
 Blenheim Palace, where Winston Churchill is born, is very sad when the toilet disappears. 
 Previously, the toilet is part of an art show in a big museum in New York.`,
 "Rubrika 4",
-"../etapas4/Straipsnis_4/index.html"
+"../etapas4/Straipsnis4/index.html"
 )
 const Rubrika5 = new StraipsnisRubrika(
 "Straipsnis 5",
@@ -77,7 +77,7 @@ Her ideas are extreme. Her government only supports Italy.
 The change makes the relationship worse between Italy and France. 
 Now, France won't take 3,500 asylum seekers from Italy.`,
 "Rubrika 5",
-"../etapas4/Straipsnis_5/index.html"
+"../etapas4/Straipsnis5/index.html"
 )
 
 document.getElementById("Straipsnis1").innerHTML = Rubrika.generavimas_rubrikos() 
@@ -86,17 +86,5 @@ document.getElementById("Straipsnis3").innerHTML = Rubrika3.generavimas_rubrikos
 document.getElementById("Straipsnis4").innerHTML = Rubrika4.generavimas_rubrikos()
 document.getElementById("Straipsnis5").innerHTML = Rubrika5.generavimas_rubrikos()  
 
-const h1Elements = document.getElementsByTagName("h1");
-for (let i = 0; i < h1Elements.length; i++) {
-  h1Elements[i].style.textAlign = "center";
-}
-const h2Elements = document.getElementsByTagName("h2");
-for (let i = 0; i < h2Elements.length; i++) {
-  h2Elements[i].style.textAlign = "center";
-}
-const divElements = document.getElementsByTagName("div");
-for (let i = 0; i < divElements.length; i++) {
-  divElements[i].style.textAlign = "center";
-}
 
 

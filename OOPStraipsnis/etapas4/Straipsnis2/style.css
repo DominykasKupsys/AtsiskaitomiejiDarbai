@@ -4,3 +4,13 @@ body{
     background-repeat: no-repeat;
     color: white;
 }
+#Straipsnis{
+    background-color: rgb(28, 41, 81,0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 25px;
+    padding: 50px;
+    align-items: center;
+    text-align: center;
+}
