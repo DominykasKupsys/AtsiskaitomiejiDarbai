@@ -7,3 +7,4 @@ Darbų sąrašas:
 4. Tekstų apdorojimas
 5. Kalendoriaus generavimo funkcija
 6. Skaičiuotuvo valdymo programavimas
+7. OOP Straipsnio projektas
