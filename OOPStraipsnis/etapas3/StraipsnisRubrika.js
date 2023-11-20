@@ -3,9 +3,10 @@ import  Straipsnis  from "../etapas1/Straipsnis.js"
 
 class StraipsnisRubrika extends Straipsnis {
 
-    constructor(pavadinimas, antraste, paveiksliukas, tekstas, rubrikos_pavadinimas ,nuoroda) {
+    constructor(pavadinimas, antraste, paveiksliukas, tekstas, rubrikos_pavadinimas, rubrikos_paveiksliukas ,nuoroda) {
       super(pavadinimas, antraste, paveiksliukas, tekstas);
       this.rubrikos_pavadinimas = rubrikos_pavadinimas;
+      this.rubrikos_paveiksliukas = rubrikos_paveiksliukas
       this.nuoroda = nuoroda
     }
     generavimas() {
@@ -16,7 +17,7 @@ class StraipsnisRubrika extends Straipsnis {
         "<br>" +
         '<img src="' +
         this.paveiksliukas +
-        '" width="200" height="200">' +
+        '" width="400" height="300">' +
         "<br>" +
         `<p>${this.tekstas}</p>`
       );
@@ -38,7 +39,7 @@ class StraipsnisRubrika extends Straipsnis {
       `<h1>${this.rubrikos_pavadinimas}</h1>`  +
       "<br>" +
       `<h2>${this.antraste}</h2>` +
-      `<div> <img src="${this.paveiksliukas}" width="50" height="50" style="text-align: center;" ></img> </div>`+
+      `<div> <img src="${this.rubrikos_paveiksliukas}" width="100" height="75" style="text-align: center;" ></img> </div>`+
       "<br>" + `<a href="${this.nuoroda}">Skaityti plačiau</a>`
       )
     }
