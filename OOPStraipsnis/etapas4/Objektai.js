@@ -80,11 +80,5 @@ Now, France won't take 3,500 asylum seekers from Italy.`,
 "../etapas4/Straipsnis5/index.html"
 )
 
-document.getElementById("Straipsnis1").innerHTML = Rubrika.generavimas_rubrikos() 
-document.getElementById("Straipsnis2").innerHTML = Rubrika2.generavimas_rubrikos() 
-document.getElementById("Straipsnis3").innerHTML = Rubrika3.generavimas_rubrikos()
-document.getElementById("Straipsnis4").innerHTML = Rubrika4.generavimas_rubrikos()
-document.getElementById("Straipsnis5").innerHTML = Rubrika5.generavimas_rubrikos()  
-
-
+export {Rubrika, Rubrika2, Rubrika3, Rubrika4, Rubrika5};
 

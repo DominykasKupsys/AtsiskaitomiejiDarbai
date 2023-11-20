@@ -14,6 +14,14 @@
     <div id="Straipsnis4"></div>
     <div id="Straipsnis5"></div>
 </div>
-    <script type="module" src="Svetaines.js"></script>
+    <script type="module">
+        import { Rubrika, Rubrika2, Rubrika3, Rubrika4, Rubrika5 } from "./Objektai.js";
+
+        document.getElementById("Straipsnis1").innerHTML = Rubrika.generavimas_rubrikos() 
+        document.getElementById("Straipsnis2").innerHTML = Rubrika2.generavimas_rubrikos() 
+        document.getElementById("Straipsnis3").innerHTML = Rubrika3.generavimas_rubrikos()
+        document.getElementById("Straipsnis4").innerHTML = Rubrika4.generavimas_rubrikos()
+        document.getElementById("Straipsnis5").innerHTML = Rubrika5.generavimas_rubrikos()  
+    </script>
 </body>
 </html>

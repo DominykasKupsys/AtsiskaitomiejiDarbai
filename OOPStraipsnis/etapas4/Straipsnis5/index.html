@@ -9,6 +9,10 @@
 <body>
     <div id="Straipsnis"></div>
 
-    <script type="module" src="Straipsnis5.js"></script>
+    <script type="module">
+        import { Rubrika5 } from "../Objektai.js";
+
+        document.getElementById("Straipsnis").innerHTML = Rubrika5.generavimas()  
+    </script>
 </body>
 </html>
