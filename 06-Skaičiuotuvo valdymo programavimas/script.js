@@ -1,25 +1,25 @@
-let $toggler = document.getElementById('toggler'),
-    $calculator = document.querySelector('.calculator');
+let $toggler = document.getElementById("toggler"),
+  $calculator = document.querySelector(".calculator");
 
-if($calculator.classList.contains('dark')) {
-  $toggler.querySelector('#light').style.display = 'block';
-  $toggler.querySelector('#dark').style.display = 'none';
+if ($calculator.classList.contains("dark")) {
+  $toggler.querySelector("#light").style.display = "block";
+  $toggler.querySelector("#dark").style.display = "none";
 } else {
-  $toggler.querySelector('#light').style.display = 'none';
-  $toggler.querySelector('#dark').style.display = 'block';
+  $toggler.querySelector("#light").style.display = "none";
+  $toggler.querySelector("#dark").style.display = "block";
 }
 
-$toggler.addEventListener('click', function() {
-  $calculator.classList.toggle('dark');
-  
-  if($calculator.classList.contains('dark')) {
-    $toggler.querySelector('#light').style.display = 'block';
-    $toggler.querySelector('#dark').style.display = 'none';
+$toggler.addEventListener("click", function () {
+  $calculator.classList.toggle("dark");
+
+  if ($calculator.classList.contains("dark")) {
+    $toggler.querySelector("#light").style.display = "block";
+    $toggler.querySelector("#dark").style.display = "none";
   } else {
-    $toggler.querySelector('#light').style.display = 'none';
-    $toggler.querySelector('#dark').style.display = 'block';
+    $toggler.querySelector("#light").style.display = "none";
+    $toggler.querySelector("#dark").style.display = "block";
   }
-})
+});
 import { procentuSkaiciavimas } from "./modules/procentu_veikimas.mjs";
 import { tinkamiOperatoriai } from "./modules/tinkami_operatoriai.mjs";
 /**
@@ -41,14 +41,14 @@ const skaiciavimas = document.querySelector(".calculator-operation");
  * @type {NodeList}
  */
 
-const rezultatas = document.querySelector(".calculator-operation-result")
+const rezultatas = document.querySelector(".calculator-operation-result");
 
 /**
  * čia laikomos visos reikšmės
  * @type {String}
  */
 
-let funkcionavimas = ""
+let funkcionavimas = "";
 
 /**
  * Jei nėra įvesta jokių operatorių ar skaičių, skaičiuotuvas rodo 0
@@ -64,7 +64,7 @@ for (let i = 0; i < mygtukai.length; i++) {
   let mygtukas = mygtukai[i];
 
   mygtukas.addEventListener("click", () => {
-  let operacija = mygtukas.dataset.operacija;
+    let operacija = mygtukas.dataset.operacija;
     /**
      * kai paspaudžiame C mygtuka visos reikšmės yra ištrinamos ir rezultate yra rodomas 0
      */
@@ -90,7 +90,7 @@ for (let i = 0; i < mygtukai.length; i++) {
       } else {
         rezultatas.innerHTML = galutinis;
       }
-      funkcionavimas = ""
+      funkcionavimas = "";
       /**
        * kai paspaudžiame procentų mygtuką atliekami procentų skaičiavimai
        */
@@ -113,43 +113,66 @@ for (let i = 0; i < mygtukai.length; i++) {
             funkcionavimas += operacija;
             skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas);
           }
-        } else if (funkcionavimas[funkcionavimas.length] !== "*" && funkcionavimas[funkcionavimas.length ] !== "/" 
-        && funkcionavimas.length < 20) {
+        } else if (
+          funkcionavimas[funkcionavimas.length] !== "*" &&
+          funkcionavimas[funkcionavimas.length] !== "/" &&
+          funkcionavimas.length < 20
+        ) {
           funkcionavimas += operacija;
           skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas);
         }
       }
     }
-    
   });
-};
+}
 
 /**
  * padaro, kad nebūtų galima parašyti kelis operatorius iš eilės
- * @param {string} operacija 
+ * @param {string} operacija
  * @returns {boolean} jei prie operatoriaus bandome parašyti dar viena operatorių gražina false
  * kitais atvėjais gražina true
  */
 
-function negaliButiDaugOperatoriu (operacija) {
-    let paskutinis_mygtukas = funkcionavimas.slice(-1);
-    let operatoriai = ["+","-","/","*",",","%","."]
+function negaliButiDaugOperatoriu(operacija) {
+  let paskutinis_mygtukas = funkcionavimas.slice(-1);
+  let operatoriai = ["+", "-", "/", "*",",", "."];
 
-    if (operatoriai.includes(operacija)){
-      if (operatoriai.includes(paskutinis_mygtukas)){
-        return false
-      } else {
-        return true
-      }
+  if (operatoriai.includes(operacija)) {
+    if (operatoriai.includes(paskutinis_mygtukas)) {
+      return false;
+    } else {
+      return true;
     }
-    return true
   }
-document.addEventListener('keydown', (event) => {
-  const allowedKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "=", ".", ",", "-", "/", "*", "%", "Backspace", "Delete", "+"];
-  
+  return true;
+}
+document.addEventListener("keydown", (event) => {
+  const allowedKeys = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "0",
+    "=",
+    ".",
+    ",",
+    "-",
+    "/",
+    "*",
+    "%",
+    "Backspace",
+    "Delete",
+    "+",
+  ];
+
   if (allowedKeys.includes(event.key)) {
     let operacija = event.key;
-    
+
     if (operacija == "C") {
       funkcionavimas = "";
       skaiciavimas.innerHTML = "";
@@ -160,8 +183,8 @@ document.addEventListener('keydown', (event) => {
     } else if (operacija == "=") {
       let galutinis = eval(procentuSkaiciavimas(funkcionavimas));
       skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas) + "=";
-      rezultatas.innerHTML =  `<div id="resultas-dydis">${galutinis}</div>`;
-      funkcionavimas = ""
+      rezultatas.innerHTML = `<div id="resultas-dydis">${galutinis}</div>`;
+      funkcionavimas = "";
     } else if (operacija == "%") {
       funkcionavimas += operacija;
       skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas);
@@ -174,12 +197,15 @@ document.addEventListener('keydown', (event) => {
             funkcionavimas += operacija;
             skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas);
           }
-        } else if (funkcionavimas[funkcionavimas.length] !== "*" && funkcionavimas[funkcionavimas.length ] !== "/" 
-        && funkcionavimas.length < 20) {
+        } else if (
+          funkcionavimas[funkcionavimas.length] !== "*" &&
+          funkcionavimas[funkcionavimas.length] !== "/" &&
+          funkcionavimas.length < 20
+        ) {
           funkcionavimas += operacija;
           skaiciavimas.innerHTML = tinkamiOperatoriai(funkcionavimas);
         }
       }
     }
   }
-})
+});
