@@ -1,0 +1,45 @@
+body{
+    background: linear-gradient(45deg, blue, red);
+    background-repeat: no-repeat;
+    height: 110vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.prekes{
+    display: grid;
+    grid-gap: 60px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr
+}
+.preke{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+   flex-direction: column;
+   margin: auto;
+   background-color: rgba(0, 0, 0, 0.3);
+   width: 100%;
+   height: 300px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+.kaina{
+    color: red;
+}
+.preke_ind{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    font-size: 30px;
+    line-height: 50px;
+}
