@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
   let rezultatas = "";
   for (let i in prekes) {
     // padarome skirtingus div paveiksleliui,pavadinimui,kainai. Taip pat padarome paveiksleli ir pavadinima linkais.
-    // linkus padaro prie /prekes/ pridedami obekto raktus.
+    // linkus padaro prie /prekes/ pridedami objekto raktus.
     rezultatas += 
     `<div class="preke">
     <a class="paveiksliukas" href="/prekes/${i}">
