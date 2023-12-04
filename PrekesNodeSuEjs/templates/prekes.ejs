@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link href="/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1><%= content %></h1>
+    <div class="prekes">
+      <% for (let i in prekes) { %>
+      <div class="preke">
+        <a class="paveiksliukas" href="/prekes/<%= i %>">
+          <img
+            src="<%= prekes[i].paveiksliukas %>"
+            width="200px"
+            height="200px"
+          />
+        </a>
+        <div class="tekstas">
+          <div class="kaina"><%= prekes[i].kaina %>&euro;</div>
+          <div class="pavadinimas">
+            <a href="/prekes/<%= i %>"><%= prekes[i].pavadinimas %></a>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </body>
+</html>
