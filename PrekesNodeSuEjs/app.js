@@ -35,8 +35,8 @@ app.get("/prekes/:pavadinimas", (req, res) => {
       {
         title: "Prekės sąrašas",
         content: "Prekės sąrašas",
-        prekes: prekes,
-        pavadinimas: pavadinimas
+        prekes: prekes, //priskiriame ejs failuose prekes objektą
+        pavadinimas: pavadinimas //priskiriame ejs failuose prekes objektą
       },
       function (err, str) {
         if (err) {

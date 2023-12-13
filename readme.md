@@ -8,3 +8,4 @@ Darbų sąrašas:
 5. Kalendoriaus generavimo funkcija
 6. Skaičiuotuvo valdymo programavimas
 7. OOP Straipsnio projektas
+8. Prekių išvedimas su NodeJS ir ExpressJS
