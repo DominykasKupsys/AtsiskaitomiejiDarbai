@@ -1,0 +1,21 @@
+<%- include("../layout/top", {title: "Pridėti knygą"}) %>
+
+<h1>Pridėti rūšį</h1>
+  
+  <% if (messages) { %>
+    <% for (let message of messages) { %>
+      <div>
+        <%= message %>
+      </div>
+    <% } %>
+  <% } %>
+
+<form action="/pets/species" method="post">
+    <div>
+      <label for="NameInput" class="form-label">Pavadinimas</label>
+      <input type="text" class="form-control" name="Name" id="NameInput" value="<%= old ? old.Name : '' %>" placeholder="" >
+    </div>
+    <button type="submit">Pridėti</button>
+  </form>
+
+<%- include("../layout/bottom") %>

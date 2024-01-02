@@ -1,0 +1,38 @@
+<%- include("../layout/top", {title: "Pridėti knygą"}) %>
+
+<h1>Pridėti augintinį</h1>
+  
+  <% if (messages) { %>
+    <% for (let message of messages) { %>
+      <div>
+        <%= message %>
+      </div>
+    <% } %>
+  <% } %>
+
+<form action="/pets" method="post">
+    <div>
+      <label for="species_IDInput" class="form-label">Rūšies ID</label>
+      <input type="number" class="form-control" name="species_ID" id="species_IDInput" value="<%= old ? old.species_ID : '' %>" placeholder="" >
+    </div>
+    <div>
+      <label for="nameInput" class="form-label">Vardas</label>
+      <input type="text" class="form-control" name="name" id="nameInput" value="<%= old ? old.name : '' %>" placeholder="" >
+    </div>
+    <div>
+      <label for="fotoInput" class="form-label">Nuotrauka</label>
+      <input type="text" class="form-control" name="foto" id="fotoInput" value="<%= old ? old.foto : '' %>" placeholder="" >
+    </div>
+    <div>
+      <label for="emailInput" class="form-label">Elektroninis paštas</label>
+      <input type="text" class="form-control" name="email" id="emailInput" value="<%= old ? old.email : '' %>" placeholder="" >
+    </div>
+    <div>
+      <label for="created_atInput" class="form-label">Įkėlimo laikas</label>
+      <input type="date" class="form-control" name="created_at" id="created_atInput" value="<%= old ? old.created_at : '' %>"  placeholder="">
+    </div>
+    <button type="submit">Pridėti</button>
+</form>
+
+
+<%- include("../layout/bottom") %>

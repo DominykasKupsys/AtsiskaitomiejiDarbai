@@ -8,7 +8,7 @@ var { prekes } = require("./prekes");
 
 app.use(express.static("public"));
 
-app.get("/prekes", (req, res) => {
+app.get("/", (req, res) => {
   ejs.renderFile(
     "templates/prekes.ejs",
     {

@@ -1,0 +1,34 @@
+<%- include("../layout/top") %>
+
+
+<h1><%= title %></h1>
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Species_ID</th>
+      <th>Name</th>
+      <th>Foto</th>
+      <th>Email</th>
+      <th>Created_at</th>
+      <th>Nuoroda</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for (let i in pets) { %>
+    <tr>
+      <th><%= pets[i].ID %></th>
+      <th><%= pets[i].species_ID %></th>
+      <th><%= pets[i].name %></th>
+      <th><%= pets[i].foto %></th>
+      <th><%= pets[i].email %></th>
+      <th><%= pets[i].created_at %></th>
+      <td>
+        <a href="/pets/<%= pets[i].ID %>">/pets/<%= pets[i].ID %></a>
+      </td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>
+
+<%- include("../layout/bottom") %>
