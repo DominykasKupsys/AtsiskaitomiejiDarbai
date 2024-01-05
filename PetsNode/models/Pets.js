@@ -40,5 +40,17 @@ module.exports = {
     } else {
       return false;
     }
-  }
+  },
+  update: async function (db,id, data) {
+    const q =
+      "UPDATE pets species_ID = ?,name = ?,foto = ?,email = ?,created_at = ? WHERE id = ?";
+    return await db.query(q, [
+      data.species_ID,
+      data.name,
+      data.foto,
+      data.email,
+      data.created_at,
+      id,
+    ]);
+  },
 };

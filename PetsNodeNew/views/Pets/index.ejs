@@ -1,0 +1,27 @@
+<%- include("../layout/top") %>
+
+<table>
+    <thead>
+        <th>#</th>
+        <th>Species_ID</th>
+        <th>Name</th>
+        <th>Foto</th>
+        <th>Email</th>
+        <th>Creation date</th>
+    </thead>
+    <tbody>
+        <% for (let i in pets) { %>
+            <tr>
+                <td><%= pets[i].ID%></td>
+                <td><%= pets[i].Species_ID%></td>
+                <td><%= pets[i].name%></td>
+                <td><%= pets[i].foto%></td>
+                <td><%= pets[i].email%></td>
+                <td><%= pets[i].created_at%></td>
+            </tr>
+            <% } %>
+    </tbody>
+</table>
+
+
+<%- include("../layout/bottom") %>

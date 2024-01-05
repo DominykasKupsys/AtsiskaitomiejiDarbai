@@ -7,6 +7,8 @@ router.get("/species", PetsController.indexSpecies);
 router.get("/createSpecies",PetsController.createSpecies)
 router.get("/create", PetsController.createPets);
 router.get("/:id", PetsController.show);
-router.post("/species",PetsController.storeSpecies)
+router.post("/species",PetsController.storeSpecies,)
 router.post("/", PetsController.storePets);
+router.get("/:id/edit", PetsController.edit);
+router.put("/:id", PetsController.update);
 module.exports = router;

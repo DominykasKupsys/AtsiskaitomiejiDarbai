@@ -3,13 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var methodOverride = require("method-override");
-var session = require("express-session");
-var db = require("./db/mysql");
+var db = require("./db/db");
+
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var petsRouter = require('./routes/PetsRouter')
 
 var app = express();
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   req.db = db;
   next();
 });
@@ -21,32 +23,12 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-app.use(
-  methodOverride((req) => {
-    return req.body._method;
-  })
-);
-
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(
-  session({
-    secret: "asdlkf.adsjfasddfkaū9įkdsjfalkdsfds",
-    saveUninitialized: true,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 },
-    resave: false,
-  })
-);
-var indexRouter = require('./routes/index');
 app.use('/', indexRouter);
-
-var usersRouter = require('./routes/users');
 app.use('/users', usersRouter);
-
-var petsRouter = require('./routes/PetsRouter');
-app.use('/pets', petsRouter);
+app.use('/pets', petsRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -63,4 +45,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 module.exports = app;

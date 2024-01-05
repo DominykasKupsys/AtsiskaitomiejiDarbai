@@ -74,7 +74,7 @@ module.exports = {
   index: async function (req, res, next) {
     try {
       const [pets, fields] = await Pets.getAll(req.db)
-      res.render("Pets/index", { title: "Augintinių sąrašas", pets: pets });
+      res.render("pets/index", { title: "Augintinių sąrašas", pets: pets });
     } catch (err) {
       console.log(err);
       res.status(500).send("Serverio klaida");
@@ -83,7 +83,7 @@ module.exports = {
   indexSpecies: async function (req, res, next) {
     try {
       const [species, fields] = await Pets.getAllSpecies(req.db)
-      res.render("Pets/indexSpecies", { title: "Rūšių sąrašas", species:species });
+      res.render("pets/indexSpecies", { title: "Rūšių sąrašas", species:species });
     } catch (err) {
       console.log(err);
       res.status(500).send("Serverio klaida");
@@ -94,7 +94,7 @@ module.exports = {
     try {
       const [pet, fields] = await Pets.getById(req.db, id);
       if (pet) {
-        res.render("Pets/show", { title: "Gyvūnėlio puslapis", pet: pet});
+        res.render("pets/show", { title: "Gyvūnėlio puslapis", pet: pet});
       } else {
         res.status(404).send("Not Found");
       }
@@ -109,7 +109,7 @@ module.exports = {
     const messages = req.session.messages;
     delete req.session.old;
     delete req.session.messages;
-    res.render("Pets/create", { old: old, messages: messages });
+    res.render("pets/create", { old: old, messages: messages });
   },
   storePets: async function (req, res, next) {
     const [pet, valid, messages] = petValidate(req);
@@ -128,6 +128,13 @@ module.exports = {
       req.session.old = pet ;
       req.session.messages = messages;
       res.redirect("/pets/create");
+    }
+    try {
+      const [species, fields] = await Pets.getAllSpecies(req.db)
+      res.render("pets/create", { title: "Rūšių sąrašas", species:species });
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Serverio klaida");
     }
   },
   createSpecies: function (req, res, next) {
@@ -155,5 +162,53 @@ module.exports = {
       req.session.messages = messages;
       res.redirect("/pets/createSpecies");
     }
-  }
+  },
+  edit: async function (req, res, next) {
+    let id = req.params.id;
+
+    try {
+      const [pet] = await Pets.getById(req.db, id);
+
+      if (pet) {
+        const old = req.session.old;
+        const messages = req.session.messages;
+        delete req.session.old;
+        delete req.session.messages;
+
+         return res.render("pets/edit", {
+          title: "Augintinio redagavimo puslapis",
+          pet: pet,
+          old: old,
+          messages: messages,
+        });
+      } else {
+        res.status(404).send("Not Found");
+      }
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Serverio klaida");
+    }
+  },
+  update: async function (req, res, next) {
+    // todo: ištrinti jei keičiasi įkeltas failas
+    // console.log(req.body)
+    let id = req.params.id;
+    try {
+      const [pet] = await Pets.getById(req.db, id);
+      if (pet) {
+        const [pet_validated, valid, messages] = petValidate(req, pet);
+
+        if (valid) {
+          const result = await Pets.update(req.db, id,pet_validated);
+           return res.redirect("/pets/" + id);
+        }
+      } else {
+        res.status(404).send("Not Found");
+      }
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Serverio klaida");
+    }
+  },
+   
 };
