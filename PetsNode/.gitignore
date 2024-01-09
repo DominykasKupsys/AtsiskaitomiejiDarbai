@@ -59,9 +59,3 @@ typings/
 
 # next.js build output
 .next
-
-uploads/*
-!uploads/.gitkeep
-
-public/images/*
-!public/images/nofoto.png

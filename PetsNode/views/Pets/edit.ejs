@@ -1,38 +1,31 @@
-<%- include("../layout/top", {title: "Pridėti knygą"}) %>
-
-<h1>Atnaujinti augintinio informaciją</h1>
-  
-  <% if (messages) { %>
-    <% for (let message of messages) { %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pets edit</title>
+  </head>
+  <body>
+    <% for(let i in rows) { %>
+    <form action="/pets/<%= id %>" method="post">
       <div>
-        <%= message %>
-      </div>
+    <input type="number" id="Species#" name="species_ID" value="<%= rows[i].species_ID %>" />
+    <label for="Species#"></label>
+  </div>
+  <div>
+    <input type="text" id="Name" name="name" value="<%= rows[i].name %>" />
+    <label for="Name"></label>
+  </div>
+  <div>
+    <input type="text" id="Foto" name="foto" value="<%= rows[i].foto %>" />
+    <label for="Foto"></label>
+  </div>
+  <div>
+    <input type="email" id="Email" name="email"  value="<%= rows[i].email %>"/>
+    <label for="Email"></label>
+  </div>
+  <button type="submit">Submit</button>
+    </form>
     <% } %>
-  <% } %>
-
-  <form action="/pets/<%= pet.id %>" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="_method" value="PUT" >
-    <div>
-      <label for="species_IDInput" class="form-label">Rūšies ID</label>
-      <input type="number" class="form-control" name="species_ID" id="species_IDInput" value="<%= old ? old.species_ID : pet.species_ID %>" placeholder="" >
-    </div>
-    <div>
-      <label for="nameInput" class="form-label">Vardas</label>
-      <input type="text" class="form-control" name="name" id="nameInput" value="<%= old ? old.name : pet.name %>" placeholder="" >
-    </div>
-    <div>
-      <label for="fotoInput" class="form-label">Nuotrauka</label>
-      <input type="text" class="form-control" name="foto" id="fotoInput" value="<%= old ? old.foto : pet.foto %>" placeholder="" >
-    </div>
-    <div>
-      <label for="emailInput" class="form-label">Elektroninis paštas</label>
-      <input type="text" class="form-control" name="email" id="emailInput" value="<%= old ? old.email : pet.email %>" placeholder="" >
-    </div>
-    <div>
-      <label for="created_atInput" class="form-label">Įkėlimo laikas</label>
-      <input type="date" class="form-control" name="created_at" id="created_atInput" value="<%= old ? old.created_at : pet.created_at %>"  placeholder="">
-    </div>
-    <button type="submit">Pridėti</button>
-</form>
-
-<%- include("../layout/bottom") %>
+  </body>
+</html>

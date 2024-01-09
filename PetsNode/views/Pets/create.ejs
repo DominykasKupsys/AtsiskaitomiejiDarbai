@@ -1,37 +1,29 @@
-<%- include("../layout/top", {title: "Pridėti knygą"}) %>
-
-<h1>Pridėti augintinį</h1>
-  
-  <% if (messages) { %>
-    <% for (let message of messages) { %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pets create</title>
+  </head>
+  <body>
+    <form action="/pets" method="post">
       <div>
-        <%= message %>
-      </div>
-    <% } %>
-  <% } %>
-
-<form action="/pets" method="post">
-    <div>
-      <label for="species_IDInput" class="form-label">Rūšies ID</label>
-      <input type="number" class="form-control" name="species_ID" id="species_IDInput" value="<%= old ? old.species_ID : '' %>" placeholder="" >
-    </div>
-    <div>
-      <label for="nameInput" class="form-label">Vardas</label>
-      <input type="text" class="form-control" name="name" id="nameInput" value="<%= old ? old.name : '' %>" placeholder="" >
-    </div>
-    <div>
-      <label for="fotoInput" class="form-label">Nuotrauka</label>
-      <input type="text" class="form-control" name="foto" id="fotoInput" value="<%= old ? old.foto : '' %>" placeholder="" >
-    </div>
-    <div>
-      <label for="emailInput" class="form-label">Elektroninis paštas</label>
-      <input type="text" class="form-control" name="email" id="emailInput" value="<%= old ? old.email : '' %>" placeholder="" >
-    </div>
-    <div>
-      <label for="created_atInput" class="form-label">Įkėlimo laikas</label>
-      <input type="date" class="form-control" name="created_at" id="created_atInput" value="<%= old ? old.created_at : '' %>"  placeholder="">
-    </div>
-    <button type="submit">Pridėti</button>
-</form>
-
-<%- include("../layout/bottom") %>
+    <input type="number" id="Species#" name="species_ID" />
+    <label for="Species#"></label>
+  </div>
+  <div>
+    <input type="text" id="Name" name="name" />
+    <label for="Name"></label>
+  </div>
+  <div>
+    <input type="text" id="Foto" name="foto" />
+    <label for="Foto"></label>
+  </div>
+  <div>
+    <input type="email" id="Email" name="email" />
+    <label for="Email"></label>
+  </div>
+  <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
