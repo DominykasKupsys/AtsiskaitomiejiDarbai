@@ -3,34 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pets showe</title>
+    <title><% title %></title>
   </head>
   <body>
+    <h1><% title %></h1>
     <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Species#</th>
-            <th>Name</th>
-            <th>Foto</th>
-            <th>Email</th>
-            <th>Created_At</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <% for(let i in rows) { %>
-            <td><%= rows[i].ID %></td>
-            <td><%= rows[i].species_ID %></td>
-            <td><%= rows[i].name %></td>
-            <td><%= rows[i].foto %></td>
-            <td><%= rows[i].email %></td>
-            <td><%= rows[i].created_at %></td>
-            <td><a href="/pets/<%=rows[i].ID%>/edit">Edit</a></td>
-            <% } %>
-          </tr>
-        </tbody>
-      </table>
+      <thead>
+        <th>#</th>
+        <th>SpeciesID</th>
+        <th>Name</th>
+        <th>Foto</th>
+        <th>Email</th>
+        <th>Created_At</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= pet.ID %></td>
+          <td><%= pet.species_ID %></td>
+          <td><%= pet.name%></td>
+          <td><%= pet.foto%></td>
+          <td><%= pet.email%></td>
+          <td><%= pet.created_at%></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
   </body>
 </html>

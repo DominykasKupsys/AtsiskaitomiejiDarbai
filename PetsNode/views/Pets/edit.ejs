@@ -3,29 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pets edit</title>
+    <title>Document</title>
   </head>
   <body>
-    <% for(let i in rows) { %>
-    <form action="/pets/<%= id %>" method="post">
+    <form action="/pets/<%= pet.ID %>" method="post">
       <div>
-    <input type="number" id="Species#" name="species_ID" value="<%= rows[i].species_ID %>" />
-    <label for="Species#"></label>
-  </div>
-  <div>
-    <input type="text" id="Name" name="name" value="<%= rows[i].name %>" />
-    <label for="Name"></label>
-  </div>
-  <div>
-    <input type="text" id="Foto" name="foto" value="<%= rows[i].foto %>" />
-    <label for="Foto"></label>
-  </div>
-  <div>
-    <input type="email" id="Email" name="email"  value="<%= rows[i].email %>"/>
-    <label for="Email"></label>
-  </div>
-  <button type="submit">Submit</button>
+        <input type="number" name="species_ID" id="species#" value="<%= pet.species_ID %>" />
+        <label for="species#">Species#</label>
+      </div>
+      <div>
+        <input type="text" name="name" id="Name" value="<%= pet.name %>" />
+        <label for="Name">Name</label>
+      </div>
+      <div>
+        <input type="text" name="foto" id="Foto" value="<%= pet.foto %>" />
+        <label for="Foto">Foto</label>
+      </div>
+      <div>
+        <input type="text" name="email" id="Email" value="<%= pet.email %>" />
+        <label for="Email">Email</label>
+      </div>
+      <button type="submit">Submit</button>
     </form>
-    <% } %>
   </body>
 </html>
