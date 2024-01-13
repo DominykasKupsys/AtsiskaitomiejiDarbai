@@ -45,9 +45,10 @@ module.exports = {
   delete: async (req, res) => {
     let id = req.params.id;
     try {
-      const result = await Pets.Delete(req.db, id);
-      if (result) {
-        res.redirect("Pets");
+      const pet = await Pets.getById(req.db, id);
+      if (pet) {
+        await Pets.Delete(req.db, id);
+        res.redirect("/pets");
       } else {
         res.status(404).send(`Nerastas augintinis: ${err.message}`);
       }

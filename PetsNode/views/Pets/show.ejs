@@ -25,7 +25,7 @@
           <td><%= pet.foto%></td>
           <td><%= pet.email%></td>
           <td><%= pet.created_at%></td>
-          <td></td>
+          <td><a href="/pets">Home</a> <a href="/pets/<%= pet.ID %>/edit">Edit</a> <a href="/pets/<%= pet.ID %>/delete">Delete</a> </td>
         </tr>
       </tbody>
     </table>
