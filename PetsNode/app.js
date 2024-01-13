@@ -3,6 +3,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const flash = require("connect-flash");
 var session = require("express-session");
 const db = require("./db/db");
 
@@ -26,6 +27,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(
+  session({
+   secret:"wefefefefefefefefe",
+   saveUninitialized:true,
+   cookie:{maxAge: 1000*60*60*24},
+   resave:false,
+  })
+)
+
+app.use(flash());
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);

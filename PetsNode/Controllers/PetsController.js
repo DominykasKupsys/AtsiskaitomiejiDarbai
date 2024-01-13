@@ -1,5 +1,5 @@
 const Pets = require("../models/Pets");
-
+const { bookValidation } = require("../request/PetsRequest");
 module.exports = {
   index: async (req, res) => {
     try {
@@ -25,16 +25,21 @@ module.exports = {
     }
   },
   createForm: (req, res) => {
-    res.render("Pets/create");
+    res.render("Pets/create", { messages: req.flash("validationCreate") });
   },
   create: async (req, res) => {
-    const pet = req.body;
-    try {
-      await Pets.Create(req.db, pet);
-      res.redirect("Pets");
-    } catch (err) {
-      console.log(err);
-      res.status(500).send(`Serverio klaida: ${err.message}`);
+    const [pet, valid, messages] = bookValidation(req);
+    if (valid) {
+      try {
+        await Pets.Create(req.db, pet);
+        res.redirect("Pets");
+      } catch (err) {
+        console.log(err);
+        res.status(500).send(`Serverio klaida: ${err.message}`);
+      }
+    } else {
+      req.flash("validationCreate", messages);
+      res.redirect("/pets/create");
     }
   },
   delete: async (req, res) => {
@@ -56,7 +61,7 @@ module.exports = {
     try {
       const [pet] = await Pets.getById(req.db, id);
       if (pet) {
-        res.render("Pets/edit", { title: "Augintinių sąrašas", pet: pet });
+        res.render("Pets/edit", { title: "Augintinių sąrašas", pet: pet, messages: req.flash("validationUpdate")  });
       } else {
         res.status(404).send(`Nerastas augintinis: ${err.message}`);
       }
@@ -67,12 +72,17 @@ module.exports = {
   },
   update: async (req, res) => {
     const id = req.params.id;
-    const pet = req.body;
-    try {
-      const result = await Pets.Update(req.db, pet, id);
-      res.redirect("/Pets/" + id);
-    } catch (err) {
-      res.status(500).send(`Serverio klaida: ${err.message}`);
+    const [pet, valid, messages] = bookValidation(req);
+    if (valid) {
+      try {
+        await Pets.Update(req.db, pet, id);
+        res.redirect("/Pets/" + id);
+      } catch (err) {
+        res.status(500).send(`Serverio klaida: ${err.message}`);
+      }
+    } else {
+      req.flash("validationUpdate", messages);
+      res.redirect(`/pets/${id}/edit`);
     }
   },
 };
