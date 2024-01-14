@@ -13,7 +13,7 @@
         </div>
       <% } %> 
     <% } %>
-    <form action="/pets" method="post">
+    <form action="/pets" method="post" enctype="multipart/form-data">
       <div>
         <input type="number" name="species_ID" id="species#" />
         <label for="species#">Species#</label>
@@ -23,7 +23,7 @@
         <label for="Name">Name</label>
       </div>
       <div>
-        <input type="text" name="foto" id="Foto" />
+        <input type="file" name="foto" id="Foto" />
         <label for="Foto">Foto</label>
       </div>
       <div>

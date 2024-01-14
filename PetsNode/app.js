@@ -6,6 +6,7 @@ var logger = require("morgan");
 const flash = require("connect-flash");
 var session = require("express-session");
 const db = require("./db/db");
+const multer = require("multer")
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -27,6 +28,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(multer({dest:"uploads/"}).single("foto"));
 
 app.use(
   session({

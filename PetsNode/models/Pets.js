@@ -32,5 +32,9 @@ module.exports = {
     const q = "UPDATE pets SET species_ID=?, name=?, foto=?, email=? WHERE ID=?";
     const [results] = await db.query(q, [data.species_ID, data.name, data.foto, data.email,id])
     return results
+  },
+  updateImage: async(db,id,path) =>{
+    const q = "UPDATE pets SET foto = ? WHERE ID = ?"
+    return await db.query(q,[path,id])
   }
 };

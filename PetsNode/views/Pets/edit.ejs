@@ -14,7 +14,7 @@
         </div>
       <% } %> 
     <% } %>
-    <form action="/pets/<%= pet.ID %>" method="post">
+    <form action="/pets/<%= pet.ID %>" method="post" enctype="multipart/form-data">
       <div>
         <input
           type="number"
@@ -29,7 +29,7 @@
         <label for="Name">Name</label>
       </div>
       <div>
-        <input type="text" name="foto" id="Foto" value="<%= pet.foto %>" />
+        <input type="file" name="foto" id="Foto" value="<%= pet.foto %>" />
         <label for="Foto">Foto</label>
       </div>
       <div>
