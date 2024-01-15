@@ -5,10 +5,12 @@ const router = express.Router();
 
 router.get('/',PetsController.index)
 router.get('/create',PetsController.createForm)
+router.get("/battle",PetsController.voteBattle)
 router.get('/:id',PetsController.show)
 router.post('/',PetsRequest.createValidation, PetsController.create)
 router.get("/:id/edit",PetsController.updateForm)
 router.post("/:id",PetsRequest.editValidation,PetsController.update)
 router.get("/:id/delete",PetsController.delete)
+router.get("/result/:id", PetsController.battleResult)
   
 module.exports = router;

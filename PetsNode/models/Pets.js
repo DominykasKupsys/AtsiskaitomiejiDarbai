@@ -1,10 +1,12 @@
 module.exports = {
   getAll: async (db) => {
-    const q = "SELECT * FROM pets";
+    const q =
+      "SELECT  pets.*, species.Name AS species FROM `pets` INNER JOIN species ON pets.species_ID = species.ID;";
     return await db.query(q);
   },
   getById: async (db, ID) => {
-    const q = "SELECT * FROM pets WHERE ID = ?";
+    const q =
+      "SELECT pets.*, species.Name AS species FROM `pets` INNER JOIN species ON pets.species_ID = species.ID WHERE pets.ID = ?";
     const [results] = await db.query(q, [ID]);
     return [results[0]];
   },
@@ -17,24 +19,46 @@ module.exports = {
       data.foto,
       data.email,
     ]);
-     if(results){
-      return results.insertId
-     }else{
-      return false
-     }
+    if (results) {
+      return results.insertId;
+    } else {
+      return false;
+    }
   },
-  Delete: async(db,ID) => {
-    const q = "DELETE FROM pets WHERE ID = ?"
-    const [result] = await db.query(q, [ID])
-    return result
+  Delete: async (db, ID) => {
+    const q = "DELETE FROM pets WHERE ID = ?";
+    const [result] = await db.query(q, [ID]);
+    return result;
   },
-  Update: async(db,data, id) =>{
-    const q = "UPDATE pets SET species_ID=?, name=?, foto=?, email=? WHERE ID=?";
-    const [results] = await db.query(q, [data.species_ID, data.name, data.foto, data.email,id])
-    return results
+  Update: async (db, data, id) => {
+    const q =
+      "UPDATE pets SET species_ID=?, name=?, foto=?, email=? WHERE ID=?";
+    const [results] = await db.query(q, [
+      data.species_ID,
+      data.name,
+      data.foto,
+      data.email,
+      id,
+    ]);
+    return results;
   },
-  updateImage: async(db,id,path) =>{
-    const q = "UPDATE pets SET foto = ? WHERE ID = ?"
-    return await db.query(q,[path,id])
-  }
+  updateImage: async (db, id, path) => {
+    const q = "UPDATE pets SET foto = ? WHERE ID = ?";
+    return await db.query(q, [path, id]);
+  },
+  randomPet: async (db) => {
+    const q = "SELECT * FROM pets ORDER BY RAND() LIMIT 2;";
+    const results = await db.query(q);
+    return results[0];
+  },
+  Result: async (db,data,ID) => {
+    const q =
+      "INSERT INTO votes(pet1_ID,pet2_ID,result,created_at) VALUES (?,?,?,NOW())";
+    const [results] = await db.query(q,[data[0].ID,data[1].ID,ID]);
+    if (results) {
+      return results.insertId;
+    } else {
+      return false;
+    }
+  },
 };

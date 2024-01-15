@@ -4,35 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><% title %></title>
+    <base href="http://localhost:3000/" />
   </head>
   <body>
     <h1><% title %></h1>
     <a href="/pets/create">Add</a>
     <table>
       <thead>
-        <th>#</th>
-        <th>SpeciesID</th>
+        <th>Species</th>
         <th>Name</th>
         <th>Foto</th>
-        <th>Email</th>
         <th>Created_At</th>
         <th>Action</th>
       </thead>
       <tbody>
         <% for(let i in pets) { %>
         <tr>
-          <td><%= pets[i].ID %></td>
-          <td><%= pets[i].species_ID %></td>
+          <td><%= pets[i].species %></td>
           <td><%= pets[i].name%></td>
-          <td><img src="images/<%= pets[i].foto ?? 'nofoto.png' %>" style="max-height: 40px;"></td>
-          <td><%= pets[i].email%></td>
+          <td>
+            <img
+              src="images/<%= pets[i].foto ?? 'nofoto.png' %>"
+              style="max-height: 40px"
+            />
+          </td>
           <td><%= pets[i].created_at%></td>
           <td><a href="/pets/<%=pets[i].ID%>">View</a></td>
-          <td><a href="/pets/<%=pets[i].ID%>/edit">Edit</a></td> 
-          <td><a href="/pets/<%=pets[i].ID%>/delete">Delete</a></td> 
+          <td><a href="/pets/<%=pets[i].ID%>/edit">Edit</a></td>
+          <td><a href="/pets/<%=pets[i].ID%>/delete">Delete</a></td>
         </tr>
         <% } %>
       </tbody>
     </table>
+    <script></script>
   </body>
 </html>

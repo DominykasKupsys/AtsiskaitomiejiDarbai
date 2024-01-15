@@ -1,6 +1,9 @@
 const Pets = require("../models/Pets");
 const { bookValidation } = require("../request/PetsRequest");
 var fs = require("node:fs/promises");
+
+const petStore = [];
+
 module.exports = {
   index: async (req, res) => {
     try {
@@ -120,6 +123,42 @@ module.exports = {
         fs.rm(req.file.path);
       }
       res.redirect(`/pets/${id}/edit`);
+    }
+  },
+  voteBattle: async (req, res) => {
+    try {
+      const [pet1, pet2] = await Pets.randomPet(req.db);
+      req.session.old = [];
+      req.session.old.push(pet1, pet2);
+
+      const oldPets = "";
+
+      if (pet1 && pet2) {
+        res.render("Pets/battle", {
+          pet1: pet1,
+          pet2: pet2,
+          petOld1: oldPets[0],
+          petOld2: oldPets[1],
+        });
+      } else {
+        res.status(404).send(`Nerastas augintinis: ${err.message}`);
+      }
+    } catch (err) {
+      console.log(err);
+      res.status(500).send(`Serverio klaida: ${err.message}`);
+    }
+  },
+  battleResult: async (req, res) => {
+    let backURL = req.header("Referer") || "/";
+    const old = req.session.old;
+    const WinnerID = req.params.id;
+    delete req.session.old;
+    try {
+      await Pets.Result(req.db, old, WinnerID);
+      res.redirect(backURL);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send(`Serverio klaida: ${err.message}`);
     }
   },
 };
