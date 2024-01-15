@@ -61,4 +61,11 @@ module.exports = {
       return false;
     }
   },
+  DailyWinner : async(db) => {
+    const q = `SELECT result, COUNT(*) AS result_count, pets.name AS pet_name, pets.foto
+    AS pet_photo FROM votes JOIN pets ON votes.result = pets.id WHERE DATE(votes.created_at)
+    = CURDATE() GROUP BY result, pet_name, pet_photo ORDER BY result_count DESC LIMIT 1`
+    const result = await db.query(q);
+    return result[0]
+  }
 };

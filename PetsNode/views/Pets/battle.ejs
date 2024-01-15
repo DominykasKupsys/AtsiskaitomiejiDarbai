@@ -13,17 +13,6 @@
         <th>Foto</th>
       </thead>
       <tbody>
-        <% if(petOld1 && petOld2) { %>
-          <tr>
-            <td><%= petOld1.name %></td>
-            <td><a href="pets/<%= petOld1.ID %>"><img id="<%=  petOld1.ID %>" src="images/<%= petOld1.ID.foto  ?? 'nofoto.png' %>" style="max-height: 40px;"></a></td>
-          </tr>
-          <tr>
-              <td><%= pet2.name %></td>
-              <td><a href="pets/<%= petOld2.ID %>"><img id="<%=  petOld1.ID %> %>" src="images/<%= petOld2.ID.foto ?? 'nofoto.png' %>" style="max-height: 40px;"></a></td>
-            </tr>
-        <% } %>
-
         <tr>
           <td><%= pet1.name %></td>
           <td><a href="pets/result/<%= pet1.ID %>"><img id="<%= pet1.ID %>" src="images/<%= pet1.foto ?? 'nofoto.png' %>" style="max-height: 40px;"></a></td>

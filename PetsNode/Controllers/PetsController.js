@@ -2,8 +2,6 @@ const Pets = require("../models/Pets");
 const { bookValidation } = require("../request/PetsRequest");
 var fs = require("node:fs/promises");
 
-const petStore = [];
-
 module.exports = {
   index: async (req, res) => {
     try {
@@ -131,14 +129,10 @@ module.exports = {
       req.session.old = [];
       req.session.old.push(pet1, pet2);
 
-      const oldPets = "";
-
       if (pet1 && pet2) {
         res.render("Pets/battle", {
           pet1: pet1,
           pet2: pet2,
-          petOld1: oldPets[0],
-          petOld2: oldPets[1],
         });
       } else {
         res.status(404).send(`Nerastas augintinis: ${err.message}`);
@@ -152,10 +146,27 @@ module.exports = {
     let backURL = req.header("Referer") || "/";
     const old = req.session.old;
     const WinnerID = req.params.id;
+
+    req.session.petsOLD = old;
+
     delete req.session.old;
     try {
       await Pets.Result(req.db, old, WinnerID);
       res.redirect(backURL);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send(`Serverio klaida: ${err.message}`);
+    }
+  },
+  dailyWinner: async (req, res) => {
+    try {
+      const [pets] = await Pets.DailyWinner(req.db);
+      res.render("Pets/dailyWinner", {
+        title: "Šiandienos nugalėtojas",
+        result_count: pets.result_count,
+        pet_name: pets.pet_name,
+        pet_photo: pets.pet_photo,
+      });
     } catch (err) {
       console.log(err);
       res.status(500).send(`Serverio klaida: ${err.message}`);
