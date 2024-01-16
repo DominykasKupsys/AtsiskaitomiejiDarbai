@@ -1,0 +1,91 @@
+<%- include('../layout/top') %>
+<div
+  class="records container h-100 d-flex flex-column justify-content-center align-items-center text-center">
+  <h1 class="mt-3"><%= title %></h1>
+  <table class="table mt-3">
+    <thead>
+      <tr class="table-light">
+        <th>Name</th>
+        <th>Foto</th>
+        <th>Wins</th>
+        <th>More info</th>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-warning">
+        <td><%= dailywinner.pet_name %></td>
+        <td>
+          <img class="recordsImg img-fluid object-fit-cover"
+            src="images/<%= dailywinner.pet_photo ?? 'nofoto.png' %>"
+          />
+        </td>
+        <td><%= dailywinner.result_count %></td>
+        <td>The pet who won the most battles today!</td>
+        <td>Today's winner</td>
+      </tr>
+
+      <tr class="table-primary">
+        <td><%= dailyloser.pet_name %></td>
+        <td>
+          <img class="recordsImg img-fluid object-fit-cover"
+            src="images/<%= dailyloser.pet_photo ?? 'nofoto.png' %>"
+          />
+        </td>
+        <td><%= dailyloser.result_count %></td>
+        <td>The pet who won the least battles today...</td>
+        <td>Today's loser</td>
+      </tr>
+
+      <tr class="table-success">
+        <td><%= weeklywinner.pet_name %></td>
+        <td>
+          <img class="recordsImg img-fluid object-fit-cover"
+            src="images/<%= weeklywinner.pet_photo ?? 'nofoto.png' %>"
+          />
+        </td>
+        <td><%= weeklywinner.result_count %></td>
+        <td>The pet who won the most battles this week!</td>
+        <td>This week's winner</td>
+      </tr>
+
+      <tr class="table-danger">
+        <td><%= weeklyloser.pet_name %></td>
+        <td>
+          <img class="recordsImg img-fluid object-fit-cover"
+            src="images/<%= weeklyloser.pet_photo ?? 'nofoto.png' %>"
+          />
+        </td>
+        <td><%= weeklyloser.result_count %></td>
+        <td>The pet Who won the least battles this week...</td>
+        <td>This week's loser</td>
+      </tr>
+
+      <tr class="table-secondary">
+        <td><%= monthlywinner.pet_name %></td>
+        <td>
+          <img class="recordsImg img-fluid object-fit-cover"
+            src="images/<%= monthlywinner.pet_photo ?? 'nofoto.png' %>"
+          />
+        </td>
+        <td><%= monthlywinner.result_count %></td>
+        <td>The pet who won the most battles this month!</td>
+        <td>This month's winner</td>
+      </tr>
+
+      <tr class="table-info">
+        <td><%= monthlyloser.pet_name %></td>
+        <td>
+          <img class="recordsImg img-fluid object-fit-cover"
+            src="images/<%= monthlyloser.pet_photo ?? 'nofoto.png' %>"
+          />
+        </td>
+        <td><%= monthlyloser.result_count %></td>
+        <td>The pet who won the least battles this month...</td>
+        <td>This month's loser</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<%- include('../layout/bottom') %>

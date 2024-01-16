@@ -1,6 +1,16 @@
-
-.BattleWallpaper{
+body{
   background-image: url(/IMG/white-polka-dots-pink-spots-3840x2160-c2-ffffff-ffb6c1-l2-127-248-a-225-f-3.png);
   background-size: cover;
-  height: 100vh
+}
+.recordsImg{
+  width: 80px;
+  height: 80px
+}
+.showImg{
+  width: 320px;
+  height: 320px
+}
+.indexIMG{
+  width: 25rem;
+  height: 25rem;
 }

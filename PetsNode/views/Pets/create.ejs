@@ -1,36 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <% if (messages) { %> 
-      <% for (let message of messages) { %>
-        <div class="alert alert-warning" role="alert">
-          <%= message %></div>
-        </div>
-      <% } %> 
-    <% } %>
-    <form action="/pets" method="post" enctype="multipart/form-data">
-      <div>
-        <input type="number" name="species_ID" id="species#" />
-        <label for="species#">Species#</label>
-      </div>
-      <div>
-        <input type="text" name="name" id="Name" />
-        <label for="Name">Name</label>
-      </div>
-      <div>
-        <input type="file" name="foto" id="Foto" />
-        <label for="Foto">Foto</label>
-      </div>
-      <div>
-        <input type="text" name="email" id="Email" />
-        <label for="Email">Email</label>
-      </div>
-      <button type="submit">Submit</button>
-    </form>
-  </body>
-</html>
+<%- include('../layout/top') %>
+<div
+  class="container h-100 d-flex flex-column justify-content-center align-items-center my-5"
+>
+  <h1><%= title %></h1>
+
+  <% if (messages) { %> <% for (let message of messages) { %>
+  <div class="editAlerts alert alert-warning alert-dismissible" role="alert">
+    <div><%= message %></div>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  <% } %> <% } %>
+
+  <form class="w-75" action="/pets" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="species#" class="form-label">Choose species:</label>
+
+      <select name="species_ID" id="species" class="form-control">
+        <option value="">--Please choose an option--</option>
+        <option value="1">Dog</option>
+        <option value="2">Cat</option>
+        <option value="3">Parrot</option>
+        <option value="4">Hamster</option>
+        <option value="5">Turtle</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="Name" class="form-label">Name</label>
+      <input name="name" type="text" class="form-control" id="Name" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="Email">Email</label>
+      <input name="email" type="text" class="form-control" id="Email" />
+    </div>
+    <div class="mb-3 w-50">
+      <label class="form-label" for="Foto">Foto</label>
+      <input name="foto" type="file" class="form-control" id="Foto" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<%- include('../layout/bottom') %>

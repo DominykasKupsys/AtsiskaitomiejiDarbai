@@ -6,7 +6,8 @@ module.exports = {
   index: async (req, res) => {
     try {
       const [pets] = await Pets.getAll(req.db);
-      res.render("Pets/index", { title: "Augintinių sąrašas", pets: pets });
+      console.log(pets)
+      res.render("Pets/index", { title: "Pet list", pets: pets });
     } catch (err) {
       console.log(err);
       res.status(500).send(`Serverio klaida: ${err.message}`);
@@ -16,8 +17,9 @@ module.exports = {
     let id = req.params.id;
     try {
       const [pet] = await Pets.getById(req.db, id);
+      console.log(pet)
       if (pet) {
-        res.render("Pets/show", { title: "Augintinių sąrašas", pet: pet });
+        res.render("Pets/show", { title: "Pet profile", pet: pet });
       } else {
         res.status(404).send(`Nerastas augintinis: ${err.message}`);
       }
@@ -27,7 +29,7 @@ module.exports = {
     }
   },
   createForm: (req, res) => {
-    res.render("Pets/create", { messages: req.flash("validationCreate") });
+    res.render("Pets/create", { messages: req.flash("validationCreate"),title: "Create pet" });
   },
   create: async (req, res) => {
     const [pet, valid, messages] = bookValidation(req);
@@ -82,7 +84,7 @@ module.exports = {
       const [pet] = await Pets.getById(req.db, id);
       if (pet) {
         res.render("Pets/edit", {
-          title: "Augintinių sąrašas",
+          title: "Edit pet",
           pet: pet,
           messages: req.flash("validationUpdate"),
         });
@@ -139,7 +141,8 @@ module.exports = {
         if (oldPetId.length > 0 && previousWinner.length > 0) {
           const [oldpet1, oldpet2] = await Pets.getTwoPets(req.db, oldPetId);
           const Winnerpet = await Pets.getById(req.db, previousWinner[0])
-          res.render("Pets/battleWithpreviousresults", {
+          res.render("Pets/battleWithResults", {
+            title: "Pet battle",
             pet1: pet1,
             pet2: pet2,
             oldpet1: oldpet1,
@@ -148,6 +151,7 @@ module.exports = {
           });
         } else {
           res.render("Pets/battle", {
+            title: "Pet battle",
             pet1: pet1,
             pet2: pet2,
           });
@@ -180,18 +184,35 @@ module.exports = {
       res.status(500).send(`Serverio klaida: ${err.message}`);
     }
   },
-  dailyWinner: async (req, res) => {
+  recordHolders: async (req, res) => {
     try {
-      const [pets] = await Pets.DailyWinner(req.db);
-      res.render("Pets/dailyWinner", {
-        title: "Šiandienos nugalėtojas",
-        result_count: pets.result_count,
-        pet_name: pets.pet_name,
-        pet_photo: pets.pet_photo,
+      const [dailywinner] = await Pets.DailyWinner(req.db);
+      const [weeklywinner] = await Pets.WeeklyWinner(req.db);
+      const [monthlywinner] = await Pets.WeeklyWinner(req.db);
+      const [dailyloser] = await Pets.DailyLoser(req.db);
+      const [weeklyloser] = await Pets.WeeklyLoser(req.db);
+      const [monthlyloser] = await Pets.MonthlyLoser(req.db);
+      res.render("Pets/Records", {
+        title: "Todays records",
+        dailywinner:dailywinner,
+        dailyloser:dailyloser,
+        weeklywinner:weeklywinner,
+        weeklyloser:weeklyloser,
+        monthlywinner:monthlywinner,
+        monthlyloser:monthlyloser,
       });
     } catch (err) {
       console.log(err);
       res.status(500).send(`Serverio klaida: ${err.message}`);
     }
   },
+  speciesWithMostPets : async(req,res) => {
+    try {
+      const [species] = await Pets.speciesWithTheMostWins(req.db);
+      res.render("Pets/species", { title: "Species records", speciesWithMostPets:species });
+    } catch (err) {
+      console.log(err);
+      res.status(500).send(`Serverio klaida: ${err.message}`);
+    }
+  }
 };

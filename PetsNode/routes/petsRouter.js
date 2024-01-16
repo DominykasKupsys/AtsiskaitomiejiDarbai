@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/',PetsController.index)
 router.get('/create',PetsController.createForm)
 router.get("/battle",PetsController.voteBattle)
-router.get("/DailyWinner",PetsController.dailyWinner)
+router.get("/records",PetsController.recordHolders)
 router.get('/:id',PetsController.show)
 router.post('/',PetsRequest.createValidation, PetsController.create)
 router.get("/:id/edit",PetsController.updateForm)
