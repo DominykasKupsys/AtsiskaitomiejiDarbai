@@ -1,7 +1,30 @@
 <%- include('../layout/top') %>
-<div class="container-fluid BattleWallpaper" >
-  <div class="d-flex flex-column justify-content-center align-items-center">
+<div class="BattleWallpaper">
+  <div
+    class="container d-flex flex-column justify-content-center align-items-center"
+  >
+    <% if (oldpet1 && oldpet2 && winnerpet) { %>
+    <h3>Results</h3>
     <div>
+      <a href="pets/<%= oldpet1.ID %>"
+        ><img
+          src="images/<%= oldpet1.foto ?? 'nofoto.png' %>"
+          class="img-fluid object-fit-cover"
+          style="width: 100px; height: 100px"
+      /></a>
+      <a href="pets/<%= oldpet2.ID %>"
+        ><img
+          src="images/<%= oldpet2.foto ?? 'nofoto.png' %>"
+          class="img-fluid object-fit-cover"
+          style="width: 100px; height: 100px"
+      /></a>
+    </div>
+    <h3><%= winnerpet[0].name %> WON!</h3>
+    <% } %>
+  </div>
+  <div
+    class="container d-flex flex-column justify-content-center align-items-center"
+  >
     <h1>
       <%= pet1.name %>
       <img
@@ -10,8 +33,6 @@
       />
       <%= pet2.name %>
     </h1>
-    </div>
-
     <div>
       <a href="pets/result/<%= pet1.ID %>"
         ><img

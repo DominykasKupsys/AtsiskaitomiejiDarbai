@@ -125,15 +125,33 @@ module.exports = {
   },
   voteBattle: async (req, res) => {
     try {
+
       const [pet1, pet2] = await Pets.randomPet(req.db);
       req.session.old = [];
       req.session.old.push(pet1, pet2);
+      
+      let oldPetId = req.session.oldPetId || [];
+      delete req.session.oldPetId
+
+      let previousWinner =  req.session.previousWinners || []
 
       if (pet1 && pet2) {
-        res.render("Pets/battle", {
-          pet1: pet1,
-          pet2: pet2,
-        });
+        if (oldPetId.length > 0 && previousWinner.length > 0) {
+          const [oldpet1, oldpet2] = await Pets.getTwoPets(req.db, oldPetId);
+          const Winnerpet = await Pets.getById(req.db, previousWinner[0])
+          res.render("Pets/battleWithpreviousresults", {
+            pet1: pet1,
+            pet2: pet2,
+            oldpet1: oldpet1,
+            oldpet2: oldpet2,
+            winnerpet: Winnerpet
+          });
+        } else {
+          res.render("Pets/battle", {
+            pet1: pet1,
+            pet2: pet2,
+          });
+        }
       } else {
         res.status(404).send(`Nerastas augintinis: ${err.message}`);
       }
@@ -146,10 +164,14 @@ module.exports = {
     let backURL = req.header("Referer") || "/";
     const old = req.session.old;
     const WinnerID = req.params.id;
+    delete req.session.old
+    
+    const petID = [];
+    petID.push(old[0].ID, old[1].ID);
+    req.session.oldPetId = petID;
 
-    req.session.petsOLD = old;
+    req.session.previousWinners = [WinnerID];
 
-    delete req.session.old;
     try {
       await Pets.Result(req.db, old, WinnerID);
       res.redirect(backURL);

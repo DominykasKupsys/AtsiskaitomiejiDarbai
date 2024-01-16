@@ -1,8 +1,6 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
 
-a {
-  color: #00B7FF;
+.BattleWallpaper{
+  background-image: url(/IMG/white-polka-dots-pink-spots-3840x2160-c2-ffffff-ffb6c1-l2-127-248-a-225-f-3.png);
+  background-size: cover;
+  height: 100vh
 }

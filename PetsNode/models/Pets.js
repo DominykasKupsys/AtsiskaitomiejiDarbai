@@ -67,5 +67,11 @@ module.exports = {
     = CURDATE() GROUP BY result, pet_name, pet_photo ORDER BY result_count DESC LIMIT 1`
     const result = await db.query(q);
     return result[0]
-  }
+  },
+  getTwoPets: async(db,data) => {
+    const q = "SELECT foto, name, ID FROM `pets` WHERE ID IN (?,?)"
+    const [results] = await db.query(q, [data[0],data[1]]);
+    console.log(results)
+    return results
+  },
 };
