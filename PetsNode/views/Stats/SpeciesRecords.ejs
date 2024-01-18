@@ -1,0 +1,28 @@
+<%- include('../layout/top') %>
+
+<div class="records container h-100 d-flex flex-column justify-content-center align-items-center text-center">
+  <h1 class="mt-3"><%= title %></h1>
+  <table class="table mt-3">
+    <thead>
+      <tr class="table-light">
+        <th>Name</th>
+        <th>Record</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-warning">
+        <td><%= speciesPets[0].Name %></td>
+        <td>The species with the most amount of pets</td>
+        <td>An impressive number! <%= speciesPets[0].species_count %></td>
+      </tr>
+      <tr class="table-warning">
+        <td><%= speciesWins[0].Name %></td>
+        <td>The species with the most amount of wins</td>
+        <td>An impressive number! <%= speciesWins[0].result_count %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<%- include('../layout/bottom') %>

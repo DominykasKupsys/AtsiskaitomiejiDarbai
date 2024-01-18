@@ -30,7 +30,7 @@ const validateImage = (req) => {
 }
 
 module.exports = {
-  bookValidation: (req) => {
+  petValidation: (req) => {
     let valid = true;
     const messages = [];
 
@@ -109,6 +109,15 @@ module.exports = {
       .withMessage("email laukelis negali būti tuščias")
       .isEmail()
       .withMessage("neteisingai parašytas elektroninis paštas"),
+  ],
+  createSpeciesValidation: [
+    body("Name")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("name laukelis negali būti tuščias")
+      .isLength({ min: 5 })
+      .withMessage("vardas yra pertrumpas"),
   ],
   
 };

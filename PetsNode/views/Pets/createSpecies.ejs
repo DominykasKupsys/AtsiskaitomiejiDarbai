@@ -1,0 +1,27 @@
+<%- include('../layout/top') %>
+<div
+  class="container h-100 d-flex flex-column justify-content-center align-items-center my-5"
+>
+  <h1><%= title %></h1>
+
+  <% if (messages) { %> <% for (let message of messages) { %>
+  <div class="editAlerts alert alert-warning alert-dismissible" role="alert">
+    <div><%= message %></div>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  <% } %> <% } %>
+
+  <form class="w-75" action="/pets/species" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="Name" class="form-label">Name</label>
+      <input name="Name" type="text" class="form-control" id="Name" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<%- include('../layout/bottom') %>

@@ -1,5 +1,5 @@
 const Pets = require("../models/Pets");
-const { bookValidation } = require("../request/PetsRequest");
+const { petValidation } = require("../request/PetsRequest");
 var fs = require("node:fs/promises");
 
 module.exports = {
@@ -8,6 +8,15 @@ module.exports = {
       const [pets] = await Pets.getAll(req.db);
       console.log(pets)
       res.render("Pets/index", { title: "Pet list", pets: pets });
+    } catch (err) {
+      console.log(err);
+      res.status(500).send(`Serverio klaida: ${err.message}`);
+    }
+  },
+  indexSpecies: async (req, res) => {
+    try {
+      const [species] = await Pets.getAllSpecies(req.db);
+      res.render("Pets/species", { title: "species list", species:species });
     } catch (err) {
       console.log(err);
       res.status(500).send(`Serverio klaida: ${err.message}`);
@@ -32,7 +41,7 @@ module.exports = {
     res.render("Pets/create", { messages: req.flash("validationCreate"),title: "Create pet" });
   },
   create: async (req, res) => {
-    const [pet, valid, messages] = bookValidation(req);
+    const [pet, valid, messages] = petValidation(req);
     if (valid) {
       try {
         const petId = await Pets.Create(req.db, pet);
@@ -61,6 +70,24 @@ module.exports = {
         fs.rm(req.file.path);
       }
       res.redirect("/pets/create");
+    }
+  },
+  createSpeciesForm: (req, res) => {
+    res.render("Pets/createSpecies", { messages: req.flash("validationCreateSpecies"),title: "Create pet" });
+  },
+  createSpecies: async (req, res) => {
+    const [species, valid, messages] = petValidation(req);
+    if (valid) {
+      try {
+        await Pets.CreateSpecies(req.db, species);
+        res.redirect("/pets/species");
+      } catch (err) {
+        console.log(err);
+        res.status(500).send(`Serverio klaida: ${err.message}`);
+      }
+    } else {
+      req.flash("validationCreateSpecies", messages);
+      res.redirect("/pets/createSpecies");
     }
   },
   delete: async (req, res) => {
@@ -141,7 +168,7 @@ module.exports = {
         if (oldPetId.length > 0 && previousWinner.length > 0) {
           const [oldpet1, oldpet2] = await Pets.getTwoPets(req.db, oldPetId);
           const Winnerpet = await Pets.getById(req.db, previousWinner[0])
-          res.render("Pets/battleWithResults", {
+          res.render("Vote/battleWithResults", {
             title: "Pet battle",
             pet1: pet1,
             pet2: pet2,
@@ -150,7 +177,7 @@ module.exports = {
             winnerpet: Winnerpet
           });
         } else {
-          res.render("Pets/battle", {
+          res.render("Vote/battle", {
             title: "Pet battle",
             pet1: pet1,
             pet2: pet2,
@@ -192,7 +219,7 @@ module.exports = {
       const [dailyloser] = await Pets.DailyLoser(req.db);
       const [weeklyloser] = await Pets.WeeklyLoser(req.db);
       const [monthlyloser] = await Pets.MonthlyLoser(req.db);
-      res.render("Pets/Records", {
+      res.render("Stats/Records", {
         title: "Todays records",
         dailywinner:dailywinner,
         dailyloser:dailyloser,
@@ -206,13 +233,17 @@ module.exports = {
       res.status(500).send(`Serverio klaida: ${err.message}`);
     }
   },
-  speciesWithMostPets : async(req,res) => {
+  speciesRecords : async(req,res) => {
     try {
-      const [species] = await Pets.speciesWithTheMostWins(req.db);
-      res.render("Pets/species", { title: "Species records", speciesWithMostPets:species });
+      const [speciesPets] = await Pets.speciesWithTheMostPets(req.db);
+      const [speciesWins] = await Pets.speciesWithTheMostWins(req.db);
+      console.log(speciesWins)
+      console.log(speciesPets)
+      res.render("Stats/SpeciesRecords", { title: "Species records", speciesPets:speciesPets, speciesWins:speciesWins });
     } catch (err) {
       console.log(err);
       res.status(500).send(`Serverio klaida: ${err.message}`);
     }
-  }
+  },
+  
 };
