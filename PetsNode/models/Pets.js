@@ -79,6 +79,16 @@ module.exports = {
       return false;
     }
   },
+  getPetBattleAmountCount: async (db,data) => {
+    const q = `SELECT COUNT(result) as count FROM votes WHERE pet1_ID = ? AND pet2_ID = ?`;
+    const results = await db.query(q,[data[0],data[1]]);
+    return results[0];
+  }, 
+  getWinnerPetBattleWinsCount:async (db,data,result) => {
+    const q = `SELECT COUNT(result) as count FROM votes WHERE pet1_ID = ? AND pet2_ID = ? AND result = ?`;
+    const results = await db.query(q,[data[0],data[1], [result]]);
+    return results[0];
+  }, 
   DailyWinner : async(db) => {
     const q = `SELECT result, COUNT(*) AS result_count, pets.name AS pet_name, pets.foto
     AS pet_photo FROM votes JOIN pets ON votes.result = pets.id WHERE DATE(votes.created_at)

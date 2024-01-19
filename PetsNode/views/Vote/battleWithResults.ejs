@@ -19,7 +19,7 @@
           style="width: 100px; height: 100px"
       /></a>
     </div>
-    <h3><%= winnerpet[0].name %> WON!</h3>
+    <h4> <%= Math.round( (howmanytimesWinnerPetWon[0].count /  amountOfBattles[0].count) * 100) %> % think that <%= winnerpet[0].name %> is better! </h4>
     <% } %>
   </div>
   <div
@@ -51,4 +51,6 @@
     </div>
   </div>
 </div>
+<script>
+</script>
 <%- include('../layout/bottom') %>

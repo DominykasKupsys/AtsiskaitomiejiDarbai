@@ -176,6 +176,9 @@ module.exports = {
         if (oldPetId.length > 0 && previousWinner.length > 0) {
           const [oldpet1, oldpet2] = await Pets.getTwoPets(req.db, oldPetId);
           const Winnerpet = await Pets.getById(req.db, previousWinner[0]);
+          const amountOfBattles = await Pets.getPetBattleAmountCount(req.db,oldPetId)
+          const howmanytimesWinnerPetWon = await Pets.getWinnerPetBattleWinsCount(req.db, oldPetId ,previousWinner[0])
+          console.log(howmanytimesWinnerPetWon[0])
           res.render("Vote/battleWithResults", {
             title: "Pet battle",
             pet1: pet1,
@@ -183,6 +186,8 @@ module.exports = {
             oldpet1: oldpet1,
             oldpet2: oldpet2,
             winnerpet: Winnerpet,
+            amountOfBattles:amountOfBattles,
+            howmanytimesWinnerPetWon : howmanytimesWinnerPetWon
           });
         } else {
           res.render("Vote/battle", {
