@@ -1,6 +1,7 @@
 <%- include('../layout/top') %>
 <div
-  class="records container h-100 d-flex flex-column justify-content-center align-items-center text-center">
+  class="records container h-100 d-flex flex-column justify-content-center align-items-center text-center"
+>
   <h1 class="mt-3"><%= title %></h1>
   <table class="table mt-3">
     <thead>
@@ -13,10 +14,13 @@
       </tr>
     </thead>
     <tbody>
+
+      <% if(dailywinner){ %>
       <tr class="table-warning">
         <td><%= dailywinner.pet_name %></td>
         <td>
-          <img class="recordsImg img-fluid object-fit-cover"
+          <img
+            class="recordsImg img-fluid object-fit-cover"
             src="images/<%= dailywinner.pet_photo ?? 'nofoto.png' %>"
           />
         </td>
@@ -24,11 +28,22 @@
         <td>The pet who won the most battles today!</td>
         <td>Today's winner</td>
       </tr>
+      <% } else { %>
+      <tr class="table-warning">
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>Šiandien jokia kova neįvyko todėl duomenų dar nėra</td>
+        <td>-</td>
+      </tr>
+      <% } %> 
 
+      <% if(dailyloser){ %>
       <tr class="table-primary">
         <td><%= dailyloser.pet_name %></td>
         <td>
-          <img class="recordsImg img-fluid object-fit-cover"
+          <img
+            class="recordsImg img-fluid object-fit-cover"
             src="images/<%= dailyloser.pet_photo ?? 'nofoto.png' %>"
           />
         </td>
@@ -36,11 +51,22 @@
         <td>The pet who won the least battles today...</td>
         <td>Today's loser</td>
       </tr>
+      <% } else { %>
+      <tr class="table-warning">
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>Šiandien jokia kova neįvyko todėl duomenų dar nėra</td>
+        <td>-</td>
+      </tr>
+      <% } %> 
 
+      <% if(weeklywinner) { %>
       <tr class="table-success">
         <td><%= weeklywinner.pet_name %></td>
         <td>
-          <img class="recordsImg img-fluid object-fit-cover"
+          <img
+            class="recordsImg img-fluid object-fit-cover"
             src="images/<%= weeklywinner.pet_photo ?? 'nofoto.png' %>"
           />
         </td>
@@ -48,11 +74,20 @@
         <td>The pet who won the most battles this week!</td>
         <td>This week's winner</td>
       </tr>
+      <% } else { %>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>Šią savaitę jokia kova neįvyko todėl duomenų dar nėra</td>
+      <td>-</td>
+      <% } %> 
 
+      <% if(weeklyloser) { %>
       <tr class="table-danger">
         <td><%= weeklyloser.pet_name %></td>
         <td>
-          <img class="recordsImg img-fluid object-fit-cover"
+          <img
+            class="recordsImg img-fluid object-fit-cover"
             src="images/<%= weeklyloser.pet_photo ?? 'nofoto.png' %>"
           />
         </td>
@@ -60,11 +95,20 @@
         <td>The pet Who won the least battles this week...</td>
         <td>This week's loser</td>
       </tr>
+      <% } else { %>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>Šią savaitę jokia kova neįvyko todėl duomenų dar nėra</td>
+      <td>-</td>
+      <% } %> 
 
+      <% if(monthlywinner) { %>
       <tr class="table-secondary">
         <td><%= monthlywinner.pet_name %></td>
         <td>
-          <img class="recordsImg img-fluid object-fit-cover"
+          <img
+            class="recordsImg img-fluid object-fit-cover"
             src="images/<%= monthlywinner.pet_photo ?? 'nofoto.png' %>"
           />
         </td>
@@ -72,11 +116,20 @@
         <td>The pet who won the most battles this month!</td>
         <td>This month's winner</td>
       </tr>
+      <% } else { %>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>Šį mėnesį jokia kova neįvyko todėl duomenų dar nėra</td>
+      <td>-</td>
+      <% } %>
 
+      <% if(monthlyloser) { %>
       <tr class="table-info">
         <td><%= monthlyloser.pet_name %></td>
         <td>
-          <img class="recordsImg img-fluid object-fit-cover"
+          <img
+            class="recordsImg img-fluid object-fit-cover"
             src="images/<%= monthlyloser.pet_photo ?? 'nofoto.png' %>"
           />
         </td>
@@ -84,6 +137,14 @@
         <td>The pet who won the least battles this month...</td>
         <td>This month's loser</td>
       </tr>
+      <% } else { %>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>Šį mėnesį jokia kova neįvyko todėl duomenų dar nėra</td>
+      <td>-</td>
+      <% } %>
+      
     </tbody>
   </table>
 </div>
