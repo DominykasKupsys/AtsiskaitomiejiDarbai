@@ -7,6 +7,7 @@ const flash = require("connect-flash");
 var session = require("express-session");
 const db = require("./db/db");
 const multer = require("multer")
+const fs = require('fs');
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
