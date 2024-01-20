@@ -1,0 +1,58 @@
+<%- include('./layout/top') %> <%- include('./layout/navbar') %>
+<div
+  class="container d-flex flex-column justify-content-center align-items-center text-white"
+>
+<h1>Voting <span class="text-warning">Page</span></h1>
+  <% if (oldpet1 && oldpet2 && winnerpet) { %>
+  <h3>Results</h3>
+  <div>
+    <a href="pets/<%= oldpet1[0].ID %>"
+      ><img
+        src="images/<%= oldpet1[0].foto ?? 'nofoto.png' %>"
+        class="img-fluid object-fit-cover"
+        style="width: 100px; height: 100px"
+    /></a>
+    <a href="pets/<%= oldpet2[0].ID %>"
+      ><img
+        src="images/<%= oldpet2[0].foto ?? 'nofoto.png' %>"
+        class="img-fluid object-fit-cover"
+        style="width: 100px; height: 100px"
+    /></a>
+  </div>
+  <h3><%= winnerpet[0].name %> WON!!</h3>
+  <h4>
+    <%= Math.round( (onePetVoteCount[0].count / twoPetsVoteCount[0].count) *
+    100) %> % of voters think that <%= winnerpet[0].name %> is better!
+  </h4>
+  <% } %>
+</div>
+<div
+  class="container d-flex flex-column justify-content-center align-items-center text-white"
+>
+  <h1 class="mt-5">Next Vote!</h1>
+  <h1>
+    <%= pet1.name %>
+    <img
+      src="/IMG/—Pngtree—cartoon vs or versus text_8543385.png"
+      style="max-height: 100px"
+    />
+    <%= pet2.name %>
+  </h1>
+  <div>
+    <a href="vote/result/<%= pet1.ID %>"
+      ><img
+        id="<%= pet1.ID %>"
+        src="images/<%= pet1.foto ?? 'nofoto.png' %>"
+        class="img-fluid object-fit-cover"
+        style="width: 200px; height: 200px"
+    /></a>
+    <a href="vote/result/<%= pet2.ID %>"
+      ><img
+        id="<%= pet2.ID %>"
+        src="images/<%= pet2.foto ?? 'nofoto.png' %>"
+        class="img-fluid object-fit-cover"
+        style="width: 200px; height: 200px"
+    /></a>
+  </div>
+</div>
+<%- include('./layout/bottom') %>

@@ -15,33 +15,36 @@ module.exports = {
 
       if (pet1 && pet2) {
         if (oldPetId.length > 0 && previousWinner.length > 0) {
-          const [oldpet1, oldpet2] = await Vote.getTwoPets(req.db, oldPetId);
+          const oldpet1 = await Pets.getById(req.db, oldPetId[0]);
+          const oldpet2 = await Pets.getById(req.db, oldPetId[1]);
           const Winnerpet = await Pets.getById(req.db, previousWinner[0]);
-          const amountOfBattles = await Vote.getPetBattleAmountCount(
+          const twoPetsVoteCount = await Vote.getPetsVoteCount(
             req.db,
             oldPetId
           );
-          const howmanytimesWinnerPetWon =
-            await Vote.getWinnerPetBattleWinsCount(
-              req.db,
-              oldPetId,
-              previousWinner[0]
-            );
-          res.render("Vote/battleWithResults", {
+          const onePetVoteCount = await Vote.getPetVoteCount(
+            req.db,
+            oldPetId,
+            previousWinner[0]
+          );
+          res.render("Vote", {
             title: "Pet battle",
             pet1: pet1,
             pet2: pet2,
             oldpet1: oldpet1,
             oldpet2: oldpet2,
             winnerpet: Winnerpet,
-            amountOfBattles: amountOfBattles,
-            howmanytimesWinnerPetWon: howmanytimesWinnerPetWon,
+            twoPetsVoteCount: twoPetsVoteCount,
+            onePetVoteCount: onePetVoteCount,
           });
         } else {
-          res.render("Vote/battle", {
+          res.render("Vote", {
             title: "Pet battle",
             pet1: pet1,
             pet2: pet2,
+            oldpet1: "",
+            oldpet2: "",
+            winnerpet: "",
           });
         }
       } else {

@@ -14,19 +14,14 @@ module.exports = {
       return false;
     }
   },
-  getPetBattleAmountCount: async (db, data) => {
+  getPetsVoteCount: async (db, data) => {
     const q = `SELECT COUNT(result) as count FROM votes WHERE pet1_ID = ? AND pet2_ID = ?`;
     const results = await db.query(q, [data[0], data[1]]);
     return results[0];
   },
-  getWinnerPetBattleWinsCount: async (db, data, result) => {
+  getPetVoteCount: async (db, data, result) => {
     const q = `SELECT COUNT(result) as count FROM votes WHERE pet1_ID = ? AND pet2_ID = ? AND result = ?`;
     const results = await db.query(q, [data[0], data[1], [result]]);
     return results[0];
-  },
-  getTwoPets: async(db,data) => {
-    const q = "SELECT foto, name, ID FROM `pets` WHERE ID IN (?,?)"
-    const [results] = await db.query(q, [data[0],data[1]]);
-    return results
   },
 };
