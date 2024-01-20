@@ -12,15 +12,6 @@ module.exports = {
       res.status(500).send(`Serverio klaida: ${err.message}`);
     }
   },
-  indexSpecies: async (req, res) => {
-    try {
-      const [species] = await Pets.getAllSpecies(req.db);
-      res.render("Pets/species", { title: "species list", species: species });
-    } catch (err) {
-      console.log(err);
-      res.status(500).send(`Serverio klaida: ${err.message}`);
-    }
-  },
   show: async (req, res) => {
     let id = req.params.id;
     try {
@@ -72,27 +63,6 @@ module.exports = {
         fs.rm(req.file.path);
       }
       res.redirect("/pets/create");
-    }
-  },
-  createSpeciesForm: (req, res) => {
-    res.render("Pets/createSpecies", {
-      messages: req.flash("validationCreateSpecies"),
-      title: "Create pet",
-    });
-  },
-  createSpecies: async (req, res) => {
-    const [species, valid, messages] = petValidation(req);
-    if (valid) {
-      try {
-        await Pets.CreateSpecies(req.db, species);
-        res.redirect("/pets/species");
-      } catch (err) {
-        console.log(err);
-        res.status(500).send(`Serverio klaida: ${err.message}`);
-      }
-    } else {
-      req.flash("validationCreateSpecies", messages);
-      res.redirect("/pets/createSpecies");
     }
   },
   delete: async (req, res) => {
@@ -159,70 +129,6 @@ module.exports = {
         fs.rm(req.file.path);
       }
       res.redirect(`/pets/${id}/edit`);
-    }
-  },
-  voteBattle: async (req, res) => {
-    try {
-      const [pet1, pet2] = await Pets.randomPet(req.db);
-      req.session.old = [];
-      req.session.old.push(pet1, pet2);
-
-      let oldPetId = req.session.oldPetId || [];
-      delete req.session.oldPetId;
-
-      let previousWinner = req.session.previousWinners || [];
-      delete req.session.previousWinner
-
-      if (pet1 && pet2) {
-        if (oldPetId.length > 0 && previousWinner.length > 0) {
-          const [oldpet1, oldpet2] = await Pets.getTwoPets(req.db, oldPetId);
-          const Winnerpet = await Pets.getById(req.db, previousWinner[0]);
-          const amountOfBattles = await Pets.getPetBattleAmountCount(req.db,oldPetId)
-          const howmanytimesWinnerPetWon = await Pets.getWinnerPetBattleWinsCount(req.db, oldPetId ,previousWinner[0])
-          console.log(howmanytimesWinnerPetWon[0])
-          res.render("Vote/battleWithResults", {
-            title: "Pet battle",
-            pet1: pet1,
-            pet2: pet2,
-            oldpet1: oldpet1,
-            oldpet2: oldpet2,
-            winnerpet: Winnerpet,
-            amountOfBattles:amountOfBattles,
-            howmanytimesWinnerPetWon : howmanytimesWinnerPetWon
-          });
-        } else {
-          res.render("Vote/battle", {
-            title: "Pet battle",
-            pet1: pet1,
-            pet2: pet2,
-          });
-        }
-      } else {
-        res.status(404).send(`Nerastas augintinis: ${err.message}`);
-      }
-    } catch (err) {
-      console.log(err);
-      res.status(500).send(`Serverio klaida: ${err.message}`);
-    }
-  },
-  battleResult: async (req, res) => {
-    let backURL = req.header("Referer") || "/";
-    const old = req.session.old;
-    const WinnerID = req.params.id;
-    delete req.session.old;
-
-    const petID = [];
-    petID.push(old[0].ID, old[1].ID);
-    req.session.oldPetId = petID;
-
-    req.session.previousWinners = [WinnerID];
-
-    try {
-      await Pets.Result(req.db, old, WinnerID);
-      res.redirect(backURL);
-    } catch (err) {
-      console.log(err);
-      res.status(500).send(`Serverio klaida: ${err.message}`);
     }
   },
   recordHolders: async (req, res) => {

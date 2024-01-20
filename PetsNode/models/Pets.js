@@ -4,29 +4,12 @@ module.exports = {
       "SELECT  pets.*, species.Name AS species FROM `pets` INNER JOIN species ON pets.species_ID = species.ID;";
     return await db.query(q);
   },
-  getAllSpecies: async (db) => {
-    const q =
-    "SELECT * FROM species";
-    return await db.query(q);
-  },
   getById: async (db, ID) => {
     const q =
     `SELECT pets.ID, pets.species_ID, pets.email, pets.name,pets.foto,DATE_FORMAT(pets.created_at, '%Y-%m-%d') AS created_at, species.Name AS species
     FROM pets INNER JOIN species ON pets.species_ID = species.ID WHERE pets.ID = ?`
     const [results] = await db.query(q, [ID]);
     return [results[0]];
-  },
-  CreateSpecies: async (db, data) => {
-    const q =
-      "INSERT INTO species(name) VALUES (?)";
-    const [results] = await db.query(q, [
-      data.Name,
-    ]);
-    if (results) {
-      return results.insertId;
-    } else {
-      return false;
-    }
   },
   Create: async (db, data) => {
     const q =
@@ -64,31 +47,6 @@ module.exports = {
     const q = "UPDATE pets SET foto = ? WHERE ID = ?";
     return await db.query(q, [path, id]);
   },
-  randomPet: async (db) => {
-    const q = "SELECT * FROM pets ORDER BY RAND() LIMIT 2;";
-    const results = await db.query(q);
-    return results[0];
-  },
-  Result: async (db,data,ID) => {
-    const q =
-      "INSERT INTO votes(pet1_ID,pet2_ID,result,created_at) VALUES (?,?,?,NOW())";
-    const [results] = await db.query(q,[data[0].ID,data[1].ID,ID]);
-    if (results) {
-      return results.insertId;
-    } else {
-      return false;
-    }
-  },
-  getPetBattleAmountCount: async (db,data) => {
-    const q = `SELECT COUNT(result) as count FROM votes WHERE pet1_ID = ? AND pet2_ID = ?`;
-    const results = await db.query(q,[data[0],data[1]]);
-    return results[0];
-  }, 
-  getWinnerPetBattleWinsCount:async (db,data,result) => {
-    const q = `SELECT COUNT(result) as count FROM votes WHERE pet1_ID = ? AND pet2_ID = ? AND result = ?`;
-    const results = await db.query(q,[data[0],data[1], [result]]);
-    return results[0];
-  }, 
   DailyWinner : async(db) => {
     const q = `SELECT result, COUNT(*) AS result_count, pets.name AS pet_name, pets.foto
     AS pet_photo FROM votes JOIN pets ON votes.result = pets.id WHERE DATE(votes.created_at)
@@ -129,11 +87,6 @@ module.exports = {
     GROUP BY result, pet_name, pet_photo ORDER BY result_count ASC LIMIT 1`
     const result = await db.query(q);
     return result[0]
-  },
-  getTwoPets: async(db,data) => {
-    const q = "SELECT foto, name, ID FROM `pets` WHERE ID IN (?,?)"
-    const [results] = await db.query(q, [data[0],data[1]]);
-    return results
   },
   speciesWithTheMostPets: async(db) => {
     const q = `SELECT species.Name, COUNT(pets.species_ID) AS species_count
