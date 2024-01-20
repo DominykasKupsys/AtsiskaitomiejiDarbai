@@ -1,36 +1,29 @@
 <%- include('../layout/top') %>
-<div class="container h-100 d-flex flex-column justify-content-center align-items-center my-5">
+<%- include("../layout/navbar")%>
+<div class="container h-100 d-flex flex-column justify-content-center align-items-center my-5 text-white">
 
-  <h1><%= title %></h1>
+  <h1>Edit <span class="text-warning">Pet</span></h1>
 
-  <% if (messages) { %> <% for (let message of messages) { %>
-  <div class="editAlerts alert alert-warning alert-dismissible" role="alert">
-    <div><%= message %></div>
-    <button
-      type="button"
-      class="btn-close"
-      data-bs-dismiss="alert"
-      aria-label="Close"
-    ></button>
-  </div>
-  <% } %> <% } %>
+  <%- include("../layout/message") %>
 
-  <form
+  <form 
     class="w-75"
     action="/pets/<%= pet.ID %>"
     method="post"
     enctype="multipart/form-data"
   >
-    <div class="mb-3">
-      <label for="species#" class="form-label">Species</label>
-      <input
-        name="species_ID"
-        type="number"
-        class="form-control"
-        id="species"
-        value="<%= pet.species_ID %>"
-      />
-    </div>
+  <div class="mb-3">
+    <label for="species#" class="form-label">Choose species:</label>
+
+    <select name="species_ID" id="species" class="form-control">
+      <option value="<%= pet.species_ID %>">Dabartinė rūšis</option>
+      <option value="1">Dog</option>
+      <option value="2">Cat</option>
+      <option value="3">Parrot</option>
+      <option value="4">Hamster</option>
+      <option value="5">Turtle</option>
+    </select>
+  </div>
     <div class="mb-3">
       <label for="Name" class="form-label">Name</label>
       <input

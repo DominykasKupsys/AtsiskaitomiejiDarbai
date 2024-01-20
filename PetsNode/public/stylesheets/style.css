@@ -1,16 +1,39 @@
 body{
-  background-image: url(/IMG/white-polka-dots-pink-spots-3840x2160-c2-ffffff-ffb6c1-l2-127-248-a-225-f-3.png);
-  background-size: cover;
+  background-color: #130c25;
 }
 .recordsImg{
   width: 80px;
   height: 80px
 }
-.showImg{
-  width: 320px;
-  height: 320px
-}
-.indexIMG{
+.cardIMG{
   width: 25rem;
   height: 25rem;
+}
+.logo{
+  width: 5rem;
+  height: 5rem;
+}
+.card-body{
+  background-color: #1a1925;
+}
+.card{
+  border: 0;
+}
+.aqua-button{
+  background-color: #00FFFF;
+}
+.salad-button{
+  background-color: #7CFC00;
+}
+.navbar{
+  background-color: #1a1925;
+  height: 4rem;
+}
+.add{
+  background-color: #1a1925;
+}
+.editCreateAlerts{
+  background-color: #1a1925;
+  border: 0;
+  color: white;
 }

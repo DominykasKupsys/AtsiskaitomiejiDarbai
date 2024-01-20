@@ -1,0 +1,11 @@
+<% if (messages) { %> <% for (let message of messages) { %>
+    <div class="editCreateAlerts alert alert-warning alert-dismissible" role="alert">
+      <div><%= message %></div>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    <% } %> <% } %>

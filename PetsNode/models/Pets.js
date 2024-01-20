@@ -11,7 +11,7 @@ module.exports = {
   },
   getById: async (db, ID) => {
     const q =
-    `SELECT pets.name,pets.foto,DATE_FORMAT(pets.created_at, '%Y-%m-%d') AS created_at, species.Name AS species
+    `SELECT pets.ID, pets.species_ID, pets.email, pets.name,pets.foto,DATE_FORMAT(pets.created_at, '%Y-%m-%d') AS created_at, species.Name AS species
     FROM pets INNER JOIN species ON pets.species_ID = species.ID WHERE pets.ID = ?`
     const [results] = await db.query(q, [ID]);
     return [results[0]];

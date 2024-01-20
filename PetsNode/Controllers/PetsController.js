@@ -134,7 +134,7 @@ module.exports = {
   },
   update: async (req, res) => {
     const id = req.params.id;
-    const [pet, valid, messages] = bookValidation(req);
+    const [pet, valid, messages] = petValidation(req);
     if (valid) {
       try {
         await Pets.Update(req.db, pet, id);
@@ -171,6 +171,7 @@ module.exports = {
       delete req.session.oldPetId;
 
       let previousWinner = req.session.previousWinners || [];
+      delete req.session.previousWinner
 
       if (pet1 && pet2) {
         if (oldPetId.length > 0 && previousWinner.length > 0) {

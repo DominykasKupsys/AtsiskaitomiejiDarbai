@@ -1,25 +1,27 @@
 <%- include('../layout/top') %>
+<%- include("../layout/navbar")%>
 <div class="container">
-  <h1 class="text-center my-3"><%= title %></h1>
+
+  <h1 class="text-center text-white my-3">Pet <span class="text-warning">List</span></h1>
 
   <div class="d-flex flex-wrap justify-content-center align-items-center mb-3">
     <% for(let i in pets) { %>
 
     <div class="card text-center my-3 mx-3" style="width: 25rem">
       <img
-        class="indexIMG card-img-top img-fluid object-fit-cover"
+        class="cardIMG card-img-top img-fluid object-fit-cover"
         src="images/<%= pets[i].foto ?? 'nofoto.png' %>"
       />
-      <div class="card-body">
+      <div class="card-body text-white ">
         <h5 class="card-title"><%= pets[i].name %></h5>
         <div>
-          <a href="/pets/<%= pets[i].ID %>" class="btn btn-success"
+          <a href="/pets/<%= pets[i].ID %>" class="btn btn-warning text-white"
             ><i class="bi bi-eye-fill"></i> View</a
           >
-          <a class="btn btn-primary" href="/pets/<%= pets[i].ID %>/edit"
+          <a class="btn aqua-button text-white" href="/pets/<%= pets[i].ID %>/edit"
             ><i class="bi bi-pencil-square"></i> Edit</a
           >
-          <a class="btn btn-danger" href="/pets/<%= pets[i].ID %>/delete"
+          <a class="btn salad-button text-white" href="/pets/<%= pets[i].ID %>/delete"
             ><i class="bi bi-trash"></i> Delete</a
           >
         </div>
@@ -29,7 +31,7 @@
     <% } %>
   </div>
   <div class="text-center">
-    <a class="btn btn-warning mb-3" href="/pets/create"
+    <a class="btn add mb-3 text-white" href="/pets/create"
       ><i class="bi bi-plus-square mx-2"></i>Add pet</a
     >
   </div>
