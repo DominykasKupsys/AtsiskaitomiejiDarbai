@@ -1,5 +1,5 @@
 const Species = require("../models/Species");
-const { petValidation } = require("../request/PetsRequest");
+const { speciesValidation } = require("../request/SpeciesRequest");
 
 module.exports = {
   index: async (req, res) => {
@@ -18,7 +18,7 @@ module.exports = {
     });
   },
   create: async (req, res) => {
-    const [species, valid, messages] = petValidation(req);
+    const [species, valid, messages] = speciesValidation(req);
     if (valid) {
       try {
         await Species.Create(req.db, species);

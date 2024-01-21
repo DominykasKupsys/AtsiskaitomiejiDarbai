@@ -1,5 +1,6 @@
 const { validationResult, body } = require("express-validator");
 var htmlspecialchars = require("htmlspecialchars")
+
 const validateText = (txt,default_txt = "") => {
   if(txt == undefined) {
     return default_txt
@@ -110,14 +111,4 @@ module.exports = {
       .isEmail()
       .withMessage("neteisingai parašytas elektroninis paštas"),
   ],
-  createSpeciesValidation: [
-    body("Name")
-      .trim()
-      .escape()
-      .notEmpty()
-      .withMessage("name laukelis negali būti tuščias")
-      .isLength({ min: 5 })
-      .withMessage("vardas yra pertrumpas"),
-  ],
-  
 };

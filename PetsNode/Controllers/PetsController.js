@@ -16,7 +16,6 @@ module.exports = {
     let id = req.params.id;
     try {
       const [pet] = await Pets.getById(req.db, id);
-
       if (pet) {
         res.render("Pets/show", { title: "Pet profile", pet: pet });
       } else {
@@ -72,9 +71,10 @@ module.exports = {
       let fotoName = pet[0].foto
       if (pet) {
         await Pets.Delete(req.db, id);
+        if(pet[0].foto){
         fs.unlink("public/images/" + fotoName , function () {
           console.log("File was deleted");
-        });
+        })};
         res.redirect("/pets");
       } else {
         res.status(404).send(`Nerastas augintinis: ${err.message}`);
@@ -131,40 +131,4 @@ module.exports = {
       res.redirect(`/pets/${id}/edit`);
     }
   },
-  // recordHolders: async (req, res) => {
-  //   try {
-  //     const [dailywinner] = await Pets.DailyWinner(req.db);
-  //     const [weeklywinner] = await Pets.WeeklyWinner(req.db);
-  //     const [monthlywinner] = await Pets.WeeklyWinner(req.db);
-  //     const [dailyloser] = await Pets.DailyLoser(req.db);
-  //     const [weeklyloser] = await Pets.WeeklyLoser(req.db);
-  //     const [monthlyloser] = await Pets.MonthlyLoser(req.db);
-  //     res.render("Stats/Records", {
-  //       title: "Todays records",
-  //       dailywinner: dailywinner,
-  //       dailyloser: dailyloser,
-  //       weeklywinner: weeklywinner,
-  //       weeklyloser: weeklyloser,
-  //       monthlywinner: monthlywinner,
-  //       monthlyloser: monthlyloser,
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //     res.status(500).send(`Serverio klaida: ${err.message}`);
-  //   }
-  // },
-  // speciesRecords: async (req, res) => {
-  //   try {
-  //     const [speciesPets] = await Pets.speciesWithTheMostPets(req.db);
-  //     const [speciesWins] = await Pets.speciesWithTheMostWins(req.db);
-  //     res.render("Stats/SpeciesRecords", {
-  //       title: "Species records",
-  //       speciesPets: speciesPets,
-  //       speciesWins: speciesWins,
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //     res.status(500).send(`Serverio klaida: ${err.message}`);
-  //   }
-  // },
 };
