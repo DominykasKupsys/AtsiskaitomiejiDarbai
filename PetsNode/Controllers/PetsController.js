@@ -88,10 +88,12 @@ module.exports = {
     let id = req.params.id;
     try {
       const [pet] = await Pets.getById(req.db, id);
+      const photo = pet.foto
       if (pet) {
         res.render("Pets/edit", {
           title: "Edit pet",
           pet: pet,
+          photo:photo,
           messages: req.flash("validationUpdate"),
         });
       } else {
