@@ -88,12 +88,10 @@ module.exports = {
     let id = req.params.id;
     try {
       const [pet] = await Pets.getById(req.db, id);
-      const photo = pet.foto
       if (pet) {
         res.render("Pets/edit", {
           title: "Edit pet",
           pet: pet,
-          photo:photo,
           messages: req.flash("validationUpdate"),
         });
       } else {
@@ -107,19 +105,34 @@ module.exports = {
   update: async (req, res) => {
     const id = req.params.id;
     const [pet, valid, messages] = petValidation(req);
+  
     if (valid) {
       try {
-        await Pets.Update(req.db, pet, id);
-        if (req.file) {
+
+        const existingPet = await Pets.getById(req.db, id);
+  
+        const updatedPet = {
+          ...existingPet,
+          ...pet
+        };
+  
+        await Pets.Update(req.db, updatedPet, id);
+  
+    
+        if (req.file || (!req.file && existingPet.photo)) {
           const ext = {
             "image/webp": ".webp",
             "image/png": ".png",
             "image/jpeg": ".jpg",
           };
-          let file_name =
-            req.file.filename.slice(0, 6) + "_" + id + ext[req.file.mimetype];
-          await fs.rename(req.file.path, "public/images/" + file_name);
-          await Pets.updateImage(req.db, id, file_name);
+          let file_name = '';
+          if (req.file) {
+            file_name = req.file.filename.slice(0, 6) + "_" + id + ext[req.file.mimetype];
+            await fs.rename(req.file.path, "public/images/" + file_name);
+          } else {
+            file_name = existingPet.photo;
+          }
+          await Pets.updateImage(req.db, file_name, id);
         }
         res.redirect("/Pets/" + id);
       } catch (err) {

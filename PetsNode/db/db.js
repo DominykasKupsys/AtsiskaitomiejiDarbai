@@ -4,8 +4,9 @@ const db = mysql.createPool({
     waitForConnections:true,
     queueLimit:0,
     connectionLimit:50,
-
-    host:"localhost",
+    
+    //reikia nurodyt konteinerio prisijungimo host
+    host: 'host.docker.internal',
     user:"root",
     password:"root",
     database:"pets"
