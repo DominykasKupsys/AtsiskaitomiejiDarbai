@@ -1,29 +1,29 @@
-<%- include('../layout/top') %>
-<%- include("../layout/navbar")%>
-<div class="container h-100 d-flex flex-column justify-content-center align-items-center my-5 text-white">
-
+<%- include('../layout/top') %> <%- include("../layout/navbar")%>
+<div
+  class="container h-100 d-flex flex-column justify-content-center align-items-center my-5 text-white"
+>
   <h1>Edit <span class="text-warning">Pet</span></h1>
 
   <%- include("../layout/message") %>
 
-  <form 
+  <form
     class="w-75"
     action="/pets/<%= pet.ID %>"
     method="post"
     enctype="multipart/form-data"
   >
-  <div class="mb-3">
-    <label for="species#" class="form-label">Choose species:</label>
+    <div class="mb-3">
+      <label for="species#" class="form-label">Choose species:</label>
 
-    <select name="species_ID" id="species" class="form-control">
-      <option value="<%= pet.species_ID %>">Dabartinė rūšis</option>
-      <option value="1">Dog</option>
-      <option value="2">Cat</option>
-      <option value="3">Parrot</option>
-      <option value="4">Hamster</option>
-      <option value="5">Turtle</option>
-    </select>
-  </div>
+      <select name="species_ID" id="species" class="form-control">
+        <option value="<%= pet.species_ID %>">Dabartinė rūšis</option>
+        <option value="1">Dog</option>
+        <option value="2">Cat</option>
+        <option value="3">Parrot</option>
+        <option value="4">Hamster</option>
+        <option value="5">Turtle</option>
+      </select>
+    </div>
     <div class="mb-3">
       <label for="Name" class="form-label">Name</label>
       <input
@@ -46,13 +46,8 @@
     </div>
     <div class="mb-3 w-50">
       <label class="form-label" for="Foto">Foto</label>
-      <input
-        name="foto"
-        type="file"
-        class="form-control"
-        id="Foto"
-        value="<%= pet.foto %>"
-      />
+      <input name="foto" type="file" class="form-control" id="Foto" />
+      <input type="hidden" name="current_foto" value="<%= pet.foto %>" />
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

@@ -68,13 +68,14 @@ module.exports = {
     let id = req.params.id;
     try {
       const pet = await Pets.getById(req.db, id);
-      let fotoName = pet[0].foto
+      let fotoName = pet[0].foto;
       if (pet) {
         await Pets.Delete(req.db, id);
-        if(pet[0].foto){
-        fs.unlink("public/images/" + fotoName , function () {
-          console.log("File was deleted");
-        })};
+        if (pet[0].foto) {
+          fs.unlink("public/images/" + fotoName, function () {
+            console.log("File was deleted");
+          });
+        }
         res.redirect("/pets");
       } else {
         res.status(404).send(`Nerastas augintinis: ${err.message}`);
@@ -105,35 +106,41 @@ module.exports = {
   update: async (req, res) => {
     const id = req.params.id;
     const [pet, valid, messages] = petValidation(req);
-  
+
     if (valid) {
       try {
-
         const existingPet = await Pets.getById(req.db, id);
-  
+
+        if (pet.foto) {
+          fs.unlink("public/images/" + existingPet[0].foto, function () {
+            console.log("File was deleted");
+          });
+        }
+
         const updatedPet = {
           ...existingPet,
-          ...pet
+          ...pet,
         };
-  
+
         await Pets.Update(req.db, updatedPet, id);
-  
-    
-        if (req.file || (!req.file && existingPet.photo)) {
+
+        let foto = req.body.current_foto;
+        if (req.file) {
           const ext = {
             "image/webp": ".webp",
             "image/png": ".png",
             "image/jpeg": ".jpg",
           };
-          let file_name = '';
-          if (req.file) {
-            file_name = req.file.filename.slice(0, 6) + "_" + id + ext[req.file.mimetype];
-            await fs.rename(req.file.path, "public/images/" + file_name);
-          } else {
-            file_name = existingPet.photo;
-          }
-          await Pets.updateImage(req.db, file_name, id);
+          const file_name =
+            req.file.filename.slice(0, 6) + "_" + id + ext[req.file.mimetype];
+          await fs.rename(req.file.path, "public/images/" + file_name);
+          foto = file_name;
         }
+
+        if (foto || (!foto && existingPet.photo)) {
+          await Pets.updateImage(req.db, id, foto);
+        }
+
         res.redirect("/Pets/" + id);
       } catch (err) {
         res.status(500).send(`Serverio klaida: ${err.message}`);
